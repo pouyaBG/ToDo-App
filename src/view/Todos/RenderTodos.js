@@ -9,11 +9,29 @@ import { GetuserTodo } from '../../services/getApi';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Backdrop from '@mui/material/Backdrop';
-import { Skeleton, TextField } from '@mui/material';
+import { Skeleton, Slide, TextField, useScrollTrigger } from '@mui/material';
+import PropTypes from 'prop-types';
 import { PostTodoUser } from '../../services/postApi';
 import { useNavigate } from 'react-router';
 import OneTodo from './OneTodo';
 import Panel from '../Dashboard/Panel';
+function HideOnScroll(props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  });
+
+  return (
+    <Slide appear={false} direction='up' in={!trigger}>
+      {children}
+    </Slide>
+  );
+}
+
+HideOnScroll.propTypes = {
+  children: PropTypes.element.isRequired,
+  window: PropTypes.func,
+};
 
 const MyTodo = () => {
   const [todo, setTodo] = React.useState(null);
@@ -38,8 +56,12 @@ const MyTodo = () => {
 
   const addTodoHandler = () => {
     const discriptionTodo = document.querySelector('.todo-description');
+    const erorNull = document.querySelector('.error_null');
     if (discriptionTodo.value === '') {
-      toast.error('Please fill all fields');
+      erorNull.style.visibility = 'visible';
+      setTimeout(() => {
+        erorNull.style.visibility = 'hidden';
+      }, 2500);
     } else {
       PostTodoUser({
         text: discriptionTodo.value,
@@ -72,6 +94,7 @@ const MyTodo = () => {
     border: '1px solid #ccc',
     boxShadow: 30,
     p: 3,
+    borderRadius: 2,
   };
 
   function LoadingPreview() {
@@ -129,8 +152,12 @@ const MyTodo = () => {
             <Typography id='transition-modal-title' variant='h6' component='h2'>
               متن فعالیت خود را وارد کنید !
             </Typography>
-            <textarea className='todo-description' ></textarea>
-            <p>لطفا توضیحات فعالیت خود را وارد کنید!</p>
+            <textarea className='todo-description'></textarea>
+            <p
+              className='error_null'
+              style={{ color: 'red', visibility: 'hidden' }}>
+              لطفا توضیحات فعالیت خود را وارد کنید!
+            </p>
             <Button
               size='small'
               color='primary'
@@ -142,18 +169,24 @@ const MyTodo = () => {
           </Box>
         </Modal>
         {/* end of modal */}
-        <Stack
-          direction='row'
-          spacing={0}
-          position='fixed'
-          className='button-addTodo'>
-          <Button
-            variant='contained'
-            endIcon={<AddIcon />}
-            onClick={handleOpen}>
-            اضافه کردن فعالیت
-          </Button>
-        </Stack>
+        <HideOnScroll>
+          <Stack
+            direction='row'
+            spacing={0}
+            position='fixed'
+            className='button-addTodo'>
+            <Button
+              variant='contained'
+              endIcon={<AddIcon />}
+              style={{
+                backgroundImage:
+                  'linear-gradient(-425deg, #77ffd2 0%, #6297db 20%, #1eecff 100%)',
+              }}
+              onClick={handleOpen}>
+              اضافه کردن فعالیت
+            </Button>
+          </Stack>
+        </HideOnScroll>
       </section>
     </>
   );

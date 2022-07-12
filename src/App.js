@@ -26,11 +26,10 @@ function App() {
       <div className='App'>
         <Routes>
           <Route path='/' element={<Auth />} />
+          
           <Route path='/panel' element={<Panel />} />
           <Route path='/panel/mytodo' element={<RenderTodo />} />
           <Route path='/panel/profile' element={<Profile />} />
-          {/* <Route path="expenses" element={<Expenses />} />
-      <Route path="invoices" element={<Invoices />} /> */}
 
           <Route path='*' element={<NotFound />} />
         </Routes>

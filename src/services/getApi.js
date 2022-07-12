@@ -5,7 +5,7 @@ export const GetuserTodo = async (roter) => {
   return response.data;
 };
 
-export const GetUserName = async (roter) => {
+export const GetUserInfo = async (roter) => {
   const response = await Client(roter).get('/user');
   return response.data;
 };

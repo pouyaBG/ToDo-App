@@ -20,7 +20,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 
 // style
 import style from './panel.module.scss';
-import { GetUserName } from '../../services/getApi';
+import { GetUserInfo } from '../../services/getApi';
 
 const pages = ['فعالیت های من', 'گزارش گیری', 'افزودن میز کار'];
 const settings = ['پروفایل', 'تنظیمات'];
@@ -104,7 +104,7 @@ export default function Panel(props) {
     }
   }, []);
   React.useEffect(() => {
-    GetUserName().then((res) => {
+    GetUserInfo().then((res) => {
       setUserName(res.data.fullname);
     });
   }, []);
@@ -207,12 +207,14 @@ export default function Panel(props) {
               </Box>
 
               <Box sx={{ flexGrow: 0 }}>
-                <span className={style.userName}>{userName}</span>
-                <Tooltip title='تنظیمات'>
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar />
-                  </IconButton>
-                </Tooltip>
+                <div className={style.userName_Box}>
+                  <span className={style.userName}>{userName}</span>
+                  <Tooltip title='تنظیمات'>
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                      <Avatar />
+                    </IconButton>
+                  </Tooltip>
+                </div>
                 <Menu
                   sx={{ mt: '45px' }}
                   id='menu-appbar'
