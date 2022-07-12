@@ -1,0 +1,56 @@
+.layout {
+    background-image: linear-gradient(-225deg, #77FFD2 0%, #6297DB 48%, #1EECFF 100%);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box_auth {
+    width: 400px;
+    height: 500px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px #0003;
+    border: 2px solid #eee;
+
+    >div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.btn_auth {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.box_form {
+    *::after {
+        border-color: #6297DB !important;
+        color: #6297DB !important;
+    }
+
+    margin-top: 20px;
+
+    button {
+        background: #6297DB;
+        color: #fff;
+        width: 100%;
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background: #6297DB;
+            opacity: 0.9;
+        }
+    }
+}
