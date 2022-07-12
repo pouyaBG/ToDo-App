@@ -9,7 +9,7 @@ import { PostComplatedTodo } from '../../services/postApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckIcon from '@mui/icons-material/Check';
-import { IconButton } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 // for date
 const options = {
   weekday: 'long',
@@ -58,12 +58,16 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
         </CardContent>
         <CardActions>
           <div className='card-actions'>
-            <IconButton size='small' color='error' onClick={deleteHandler}>
-              <DeleteIcon />
-            </IconButton>
-            <IconButton size='small' color='info' onClick={completedHandler}>
-              <CheckIcon />
-            </IconButton>
+            <Tooltip title='حدف'>
+              <IconButton size='small' color='error' onClick={deleteHandler}>
+                <DeleteIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title='تکمیل کردن'>
+              <IconButton size='small' color='info' onClick={completedHandler}>
+                <CheckIcon />
+              </IconButton>
+            </Tooltip>
           </div>
         </CardActions>
       </Card>

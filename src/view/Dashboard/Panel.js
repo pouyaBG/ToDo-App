@@ -63,16 +63,41 @@ export default function Panel(props) {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (e) => {
+    console.log(e);
+    switch (e.target.innerHTML) {
+      case 'فعالیت های من':
+        redirect('/panel/mytodo');
+        break;
+
+      default:
+        break;
+    }
     setAnchorElNav(null);
   };
+  const handleCloseNavMenuTwo = (e) => {
+    switch (e.target.innerText) {
+      case 'فعالیت های من':
+        redirect('/panel/mytodo');
+        break;
 
-  const handleCloseUserMenu = () => {
+      default:
+        break;
+    }
+  };
+
+  const handleCloseUserMenu = (e) => {
+    switch (e.target.innerHTML) {
+      case 'پروفایل':
+        redirect('/panel/profile');
+        break;
+
+      default:
+        break;
+    }
     setAnchorElUser(null);
   };
-  const handleRoute = (path) => {
-    redirect(path);
-  };
+
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
       redirect('/');
@@ -120,7 +145,7 @@ export default function Panel(props) {
                   aria-label='account of current user'
                   aria-controls='menu-appbar'
                   aria-haspopup='true'
-                  // onClick={handleOpenNavMenu}
+                  onClick={handleOpenNavMenu}
                   color='inherit'>
                   <MenuIcon />
                 </IconButton>
@@ -143,7 +168,9 @@ export default function Panel(props) {
                   }}>
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign='center'>{page}</Typography>
+                      <Typography textAlign='center' value={page}>
+                        {page}
+                      </Typography>
                     </MenuItem>
                   ))}
                 </Menu>
@@ -172,7 +199,7 @@ export default function Panel(props) {
                 {pages.map((page) => (
                   <Button
                     key={page}
-                    onClick={handleCloseNavMenu}
+                    onClick={handleCloseNavMenuTwo}
                     sx={{ my: 2, color: 'white', display: 'block' }}>
                     {page}
                   </Button>

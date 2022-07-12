@@ -4,7 +4,7 @@ const Client = axios.create({
   baseURL: 'https://todos.iran.liara.run',
   headers: {
     accept: 'text/plain',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
 });
 

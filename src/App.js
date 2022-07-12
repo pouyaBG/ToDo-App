@@ -10,6 +10,7 @@ import Auth from './view/Auth';
 import Panel from './view/Dashboard/Panel';
 import NotFound from './view/NotFound/NotFound';
 import RenderTodo from './view/Todos/RenderTodos';
+import Profile from './view/Profile/Profile';
 
 function App() {
   const [isLogin, serIsLogin] = React.useState(false);
@@ -27,6 +28,7 @@ function App() {
           <Route path='/' element={<Auth />} />
           <Route path='/panel' element={<Panel />} />
           <Route path='/panel/mytodo' element={<RenderTodo />} />
+          <Route path='/panel/profile' element={<Profile />} />
           {/* <Route path="expenses" element={<Expenses />} />
       <Route path="invoices" element={<Invoices />} /> */}
 
