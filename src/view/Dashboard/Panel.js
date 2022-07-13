@@ -20,6 +20,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 // style
 import style from './panel.module.scss';
 import { GetUserInfo } from '../../services/getApi';
+import { Stack } from '@mui/material';
 
 const pages = ['فعالیت های من', 'گزارش گیری', 'افزودن میز کار'];
 const settings = ['پروفایل', 'تنظیمات'];
@@ -212,7 +213,13 @@ export default function Panel(props) {
                   <span className={style.userName}>{userName}</span>
                   <Tooltip title='تنظیمات'>
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar />
+                      <Stack>
+                        <Avatar
+                          alt={userName}
+                          // !TODO: add src here
+                          src='/static/images/avatar/1.jpg'
+                        />
+                      </Stack>
                     </IconButton>
                   </Tooltip>
                 </div>
