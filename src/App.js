@@ -11,6 +11,7 @@ import Panel from './view/Dashboard/Panel';
 import NotFound from './view/NotFound/NotFound';
 import RenderTodo from './view/Todos/RenderTodos';
 import Profile from './view/Profile/Profile';
+import SettingUser from './view/SettingUser/SettingUser';
 
 function App() {
   const [isLogin, serIsLogin] = React.useState(false);
@@ -26,10 +27,11 @@ function App() {
       <div className='App'>
         <Routes>
           <Route path='/' element={<Auth />} />
-          
+
           <Route path='/panel' element={<Panel />} />
           <Route path='/panel/mytodo' element={<RenderTodo />} />
           <Route path='/panel/profile' element={<Profile />} />
+          <Route path='/panel/settings' element={<SettingUser />} />
 
           <Route path='*' element={<NotFound />} />
         </Routes>

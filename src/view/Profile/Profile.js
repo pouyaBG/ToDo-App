@@ -1,10 +1,14 @@
-import { IconButton, Tooltip } from '@mui/material';
+import React from 'react';
+import { Button, IconButton, Modal, Tooltip, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { GetUserInfo } from '../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CreateIcon from '@mui/icons-material/Create';
 import Panel from '../Dashboard/Panel';
+import Box from '@mui/material/Box';
+import Backdrop from '@mui/material/Backdrop';
 import style from './Profile.module.scss';
+
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Profile = () => {
@@ -18,10 +22,27 @@ const Profile = () => {
       setUserName({
         name: res.data.fullname,
         email: res.data.email,
-        imageUser: res.data.avatar,
+        // imageUser: res.data.avatar,
       });
     });
   }, []);
+
+  // modal
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const styleModal = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    border: '1px solid #ccc',
+    boxShadow: 30,
+    p: 3,
+    borderRadius: 2,
+  };
 
   return (
     <>
@@ -39,12 +60,34 @@ const Profile = () => {
         <div className={style.email}>{userName.email}</div>
         <div className={style.edit}>
           <Tooltip title=' ویرایش'>
-            <IconButton size='small' color='info'>
+            <IconButton size='small' color='info' onClick={handleOpen}>
               <CreateIcon />
             </IconButton>
           </Tooltip>
         </div>
       </div>
+
+      {/* modal */}
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='transition-modal-title'
+        aria-describedby='transition-modal-description'
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}>
+        <Box sx={styleModal}>
+          <Typography id='transition-modal-title' variant='h6' component='h2'>
+            متن فعالیت خود را وارد کنید !
+          </Typography>
+
+          <Button size='small' color='primary' className='btn-addTodo'>
+            ذخیره تغیرات
+          </Button>
+        </Box>
+      </Modal>
     </>
   );
 };

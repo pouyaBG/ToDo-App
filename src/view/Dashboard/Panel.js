@@ -17,7 +17,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-
 // style
 import style from './panel.module.scss';
 import { GetUserInfo } from '../../services/getApi';
@@ -63,7 +62,7 @@ export default function Panel(props) {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (e) => {
+  const handelOpenPagePhone = (e) => {
     console.log(e);
     switch (e.target.innerHTML) {
       case 'فعالیت های من':
@@ -75,7 +74,7 @@ export default function Panel(props) {
     }
     setAnchorElNav(null);
   };
-  const handleCloseNavMenuTwo = (e) => {
+  const handelOpenPage = (e) => {
     switch (e.target.innerText) {
       case 'فعالیت های من':
         redirect('/panel/mytodo');
@@ -91,6 +90,8 @@ export default function Panel(props) {
       case 'پروفایل':
         redirect('/panel/profile');
         break;
+      case 'تنظیمات':
+        redirect('/panel/settings');
 
       default:
         break;
@@ -162,12 +163,12 @@ export default function Panel(props) {
                     horizontal: 'left',
                   }}
                   open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
+                  onClose={handelOpenPagePhone}
                   sx={{
                     display: { xs: 'block', md: 'none' },
                   }}>
                   {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <MenuItem key={page} onClick={handelOpenPagePhone}>
                       <Typography textAlign='center' value={page}>
                         {page}
                       </Typography>
@@ -199,7 +200,7 @@ export default function Panel(props) {
                 {pages.map((page) => (
                   <Button
                     key={page}
-                    onClick={handleCloseNavMenuTwo}
+                    onClick={handelOpenPage}
                     sx={{ my: 2, color: 'white', display: 'block' }}>
                     {page}
                   </Button>
