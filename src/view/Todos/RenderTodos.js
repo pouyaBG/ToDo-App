@@ -76,7 +76,6 @@ const MyTodo = () => {
         });
     }
   };
-
   const complateHandler = (e) => {
     console.log(e);
   };

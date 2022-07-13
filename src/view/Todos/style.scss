@@ -70,8 +70,13 @@
 
 .text-body {
   font-size: 20px;
-  max-width: 250px;
-  word-wrap: break-word;
+  max-width: 200px;
+  display: block; /* or inline-block */
+  overflow: hidden;
+  max-height: 3em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .body {

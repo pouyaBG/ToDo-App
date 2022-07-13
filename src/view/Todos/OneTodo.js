@@ -2,14 +2,22 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import DeleteTodo from '../../services/deleteApi';
 import { PostComplatedTodo } from '../../services/postApi';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckIcon from '@mui/icons-material/Check';
-import { IconButton, Tooltip } from '@mui/material';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  IconButton,
+  Tooltip,
+} from '@mui/material';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 // for date
 const options = {
   weekday: 'long',
@@ -36,10 +44,25 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       setChange(new Date());
     });
   };
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const showHandler = (e) => {
+    console.log(e);
+  };
+
   return (
     <div className='box-todo'>
-      <Card sx={{ minWidth: 275 }}>
-        <CardContent className='body'>
+      <Card sx={{ minWidth: 275, maxWidth: 325 }}>
+        <CardContent className='body' onClick={handleClickOpen}>
           <Typography variant='body1' className='text-body'>
             {text}
           </Typography>
@@ -71,6 +94,26 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
           </div>
         </CardActions>
       </Card>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'>
+        <DialogTitle id='alert-dialog-title'>متن کامل فعالیت شما</DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            {text}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Tooltip title='ویرایش'>
+            <IconButton onClick={handleClose} autoFocus>
+              <ModeEditIcon />
+            </IconButton>
+          </Tooltip>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

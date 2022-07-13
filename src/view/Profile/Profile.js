@@ -1,5 +1,12 @@
 import React from 'react';
-import { Button, IconButton, Modal, Tooltip, Typography } from '@mui/material';
+import {
+  Avatar,
+  Button,
+  IconButton,
+  Modal,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { GetUserInfo } from '../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -10,6 +17,7 @@ import Backdrop from '@mui/material/Backdrop';
 import style from './Profile.module.scss';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { width } from '@mui/system';
 
 const Profile = () => {
   const [userName, setUserName] = useState({
@@ -79,10 +87,16 @@ const Profile = () => {
           timeout: 500,
         }}>
         <Box sx={styleModal}>
-          <Typography id='transition-modal-title' variant='h6' component='h2'>
-            متن فعالیت خود را وارد کنید !
-          </Typography>
-
+          <div className={style.modal_user}>
+            <Typography id='transition-modal-title' variant='h4' component='h2'>
+              مشخصات
+            </Typography>
+            <Avatar sx={{ margin: 2, width: 150, height: 150 }}></Avatar>
+            <Button variant='contained' component='label' onBlur={2}>
+              افزدون عکس
+              <input type='file' accept='image/png, image/jpeg' hidden />
+            </Button>
+          </div>
           <Button size='small' color='primary' className='btn-addTodo'>
             ذخیره تغیرات
           </Button>
