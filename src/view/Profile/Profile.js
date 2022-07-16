@@ -3,10 +3,12 @@ import {
   Avatar,
   Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   IconButton,
   Modal,
+  Stack,
   TextField,
   Tooltip,
   Typography,
@@ -87,12 +89,41 @@ const Profile = () => {
         aria-describedby='alert-dialog-description'>
         <DialogTitle id='alert-dialog-title'>مشخصات شما</DialogTitle>
         <DialogContent>
+          <Stack
+            direction='column'
+            spacing={1}
+            style={{ display: 'flex', alignItems: 'center' }}>
+            <Avatar alt={UserInfo.name} src={UserInfo.imageUser} />
+            <Button variant='outlined' component='label' size='small'>
+              بارگذاری عکس
+              <input type='file' hidden />
+            </Button>
+          </Stack>
+          <TextField
+            fullWidth
+            sx={{ paddingY: 1 }}
+            id='standard-basic'
+            label='نام کاربری'
+            variant='standard'
+            placeholder={UserInfo.name}
+          />
           <TextField
             fullWidth
             id='standard-basic'
-            label='Standard'
+            label='ایمیل'
             variant='standard'
+            placeholder={UserInfo.email}
           />
+
+          <DialogActions>
+            <Button
+              size='small'
+              sx={{ marginTop: 4 }}
+              color='primary'
+              variant='outlined'>
+              دخیره تغیرات
+            </Button>
+          </DialogActions>
         </DialogContent>
       </Dialog>
     </>

@@ -40,9 +40,13 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       completed: !completed,
       timeStart: timeStart,
       timeEnd: new Date(),
-    }).then((res) => {
-      setChange(new Date());
-    });
+    })
+      .then((res) => {
+        setChange(new Date());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const [open, setOpen] = React.useState(false);
