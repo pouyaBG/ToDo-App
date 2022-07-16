@@ -2,8 +2,12 @@ import React from 'react';
 import {
   Avatar,
   Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   IconButton,
   Modal,
+  TextField,
   Tooltip,
   Typography,
 } from '@mui/material';
@@ -20,14 +24,14 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { width } from '@mui/system';
 
 const Profile = () => {
-  const [userName, setUserName] = useState({
+  const [UserInfo, setUserInfo] = useState({
     name: '',
     email: '',
     imageUser: '',
   });
   useEffect(() => {
     GetUserInfo().then((res) => {
-      setUserName({
+      setUserInfo({
         name: res.data.fullname,
         email: res.data.email,
         // imageUser: res.data.avatar,
@@ -57,7 +61,7 @@ const Profile = () => {
       <Panel />
       <div className={style.container}>
         <div className={style.cardColor}></div>
-        <h1 className={style.fullName}>{userName.name}</h1>
+        <h1 className={style.fullName}>{UserInfo.name}</h1>
         <LazyLoadImage
           alt='demonstration1'
           className={style.imagePreview}
@@ -65,7 +69,7 @@ const Profile = () => {
           src={'http://assets.stickpng.com/images/585e4beacb11b227491c3399.png'}
           effect='blur'
         />
-        <div className={style.email}>{userName.email}</div>
+        <div className={style.email}>{UserInfo.email}</div>
         <div className={style.edit}>
           <Tooltip title=' ویرایش'>
             <IconButton size='small' color='info' onClick={handleOpen}>
@@ -76,32 +80,21 @@ const Profile = () => {
       </div>
 
       {/* modal */}
-      <Modal
+      <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby='transition-modal-title'
-        aria-describedby='transition-modal-description'
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}>
-        <Box sx={styleModal}>
-          <div className={style.modal_user}>
-            <Typography id='transition-modal-title' variant='h4' component='h2'>
-              مشخصات
-            </Typography>
-            <Avatar sx={{ margin: 2, width: 150, height: 150 }}></Avatar>
-            <Button variant='contained' component='label' onBlur={2}>
-              افزدون عکس
-              <input type='file' accept='image/png, image/jpeg' hidden />
-            </Button>
-          </div>
-          <Button size='small' color='primary' className='btn-addTodo'>
-            ذخیره تغیرات
-          </Button>
-        </Box>
-      </Modal>
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'>
+        <DialogTitle id='alert-dialog-title'>مشخصات شما</DialogTitle>
+        <DialogContent>
+          <TextField
+            fullWidth
+            id='standard-basic'
+            label='Standard'
+            variant='standard'
+          />
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

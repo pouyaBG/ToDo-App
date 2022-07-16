@@ -41,11 +41,15 @@
   align-items: center;
   color: #999;
 }
-
+#alert-dialog-title {
+  font-size: 17px;
+  transition: all 0.3s;
+}
 .todo-description {
-  margin-top: 20px;
+  margin-top: 1px;
   height: 150px;
-  width: 450px;
+  width: 200px;
+  max-width: 500px;
   resize: none;
   padding: 4px 6px;
   font-size: 16px;
@@ -59,7 +63,27 @@
     border: 2px solid rgb(29, 134, 231);
   }
 }
-
+.error_null {
+  color: red;
+  margin-top: 2px;
+  font-size: 12px;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+@media screen and (min-width: 768px) {
+  #alert-dialog-title {
+    font-size: 25px;
+  }
+  .todo-description {
+    width: 450px;
+  }
+  .error_null {
+    color: red;
+    margin-top: 2px;
+    font-size: 16px;
+    visibility: hidden;
+  }
+}
 .loading-skeleton {
   span {
     margin: 7px 0;

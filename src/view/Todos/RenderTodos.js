@@ -1,20 +1,25 @@
 import * as React from 'react';
 import './style.scss';
-import Typography from '@mui/material/Typography';
 import { toast } from 'react-toastify';
 import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { GetuserTodo } from '../../services/getApi';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import Backdrop from '@mui/material/Backdrop';
-import { Skeleton, Slide, TextField, useScrollTrigger } from '@mui/material';
+import {
+  CircularProgress,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Skeleton,
+  Slide,
+  useScrollTrigger,
+} from '@mui/material';
 import PropTypes from 'prop-types';
 import { PostTodoUser } from '../../services/postApi';
 import { useNavigate } from 'react-router';
 import OneTodo from './OneTodo';
 import Panel from '../Dashboard/Panel';
+import Dialog from '@mui/material/Dialog';
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -83,18 +88,6 @@ const MyTodo = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 500,
-    bgcolor: 'background.paper',
-    border: '1px solid #ccc',
-    boxShadow: 30,
-    p: 3,
-    borderRadius: 2,
-  };
 
   function LoadingPreview() {
     return (
@@ -136,38 +129,38 @@ const MyTodo = () => {
             />
           ))
         )}
-        {/* button add todo for show modal */}
-        <Modal
+        {/* button add todo for show Dialog */}
+        <Dialog
           open={open}
           onClose={handleClose}
-          aria-labelledby='transition-modal-title'
-          aria-describedby='transition-modal-description'
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}>
-          <Box sx={style}>
-            <Typography id='transition-modal-title' variant='h6' component='h2'>
-              متن فعالیت خود را وارد کنید !
-            </Typography>
+          aria-labelledby='alert-dialog-title'
+          aria-describedby='alert-dialog-description'>
+          <DialogTitle id='alert-dialog-title'>
+            متن فعالیت خود را وارد کنید !
+          </DialogTitle>
+          <DialogContent>
             <textarea className='todo-description'></textarea>
-            <p
-              className='error_null'
-              style={{ color: 'red', visibility: 'hidden' }}>
-              لطفا توضیحات فعالیت خود را وارد کنید!
-            </p>
+            <p className='error_null'>لطفا توضیحات فعالیت خود را وارد کنید!</p>
+          </DialogContent>
+          <DialogActions>
             <Button
               size='small'
               color='primary'
               className='btn-addTodo'
               onClick={addTodoHandler}
               setChange={setChange}>
-              اضافه کردن
+              {!isloading ? (
+                <>اضافه کردن</>
+              ) : (
+                <>
+                  لطفا صبر کنید &nbsp;
+                  <CircularProgress sx={{ color: 'blue' }} size={22} />
+                </>
+              )}
             </Button>
-          </Box>
-        </Modal>
-        {/* end of modal */}
+          </DialogActions>
+        </Dialog>
+        {/* end of Dialog */}
         <HideOnScroll>
           <Stack
             direction='row'
