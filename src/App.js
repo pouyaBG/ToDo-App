@@ -5,13 +5,8 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-// pages
-import Auth from './view/Auth';
-import Panel from './view/Dashboard/Panel';
-import NotFound from './view/NotFound/NotFound';
-import RenderTodo from './view/Todos/RenderTodos';
-import Profile from './view/Profile/Profile';
-import SettingUser from './view/SettingUser/SettingUser';
+// routes
+import routes from './routes';
 
 function App() {
   const [isLogin, serIsLogin] = React.useState(false);
@@ -26,14 +21,9 @@ function App() {
     <CacheProvider value={cacheRtl}>
       <div className='App'>
         <Routes>
-          <Route path='/' element={<Auth />} />
-
-          <Route path='/panel' element={<Panel />} />
-          <Route path='/panel/mytodo' element={<RenderTodo />} />
-          <Route path='/panel/profile' element={<Profile />} />
-          <Route path='/panel/settings' element={<SettingUser />} />
-
-          <Route path='*' element={<NotFound />} />
+          {routes.map((route, index) => {
+            return <Route {...route} index={index} />;
+          })}
         </Routes>
       </div>
     </CacheProvider>
