@@ -41,6 +41,7 @@ HideOnScroll.propTypes = {
 const MyTodo = () => {
   const [todo, setTodo] = React.useState(null);
   const [isloading, setIsLoading] = React.useState(false);
+  const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
   const redirect = useNavigate();
 
@@ -53,9 +54,9 @@ const MyTodo = () => {
   React.useEffect(() => {
     setIsLoading(true);
     GetuserTodo().then((res) => {
+      setOpen(false);
       setTodo(res.todos);
       setIsLoading(false);
-      setOpen(false);
     });
   }, [change]);
 
@@ -68,6 +69,7 @@ const MyTodo = () => {
         erorNull.style.visibility = 'hidden';
       }, 2500);
     } else {
+      setLoadAddTodo(true);
       PostTodoUser({
         text: discriptionTodo.value,
         completed: false,
@@ -77,7 +79,6 @@ const MyTodo = () => {
         .then(() => setChange(new Date()))
         .catch((err) => {
           toast.error(err.response.data.message);
-          console.log(err);
         });
     }
   };
@@ -149,7 +150,7 @@ const MyTodo = () => {
               className='btn-addTodo'
               onClick={addTodoHandler}
               setChange={setChange}>
-              {!isloading ? (
+              {!loadAddTodo ? (
                 <>اضافه کردن</>
               ) : (
                 <>

@@ -9,8 +9,6 @@ import createCache from '@emotion/cache';
 import routes from './routes';
 
 function App() {
-  const [isLogin, serIsLogin] = React.useState(false);
-
   // Create rtl cache
   const cacheRtl = createCache({
     key: 'muirtl',
