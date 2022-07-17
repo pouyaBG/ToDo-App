@@ -80,6 +80,9 @@ export default function Panel(props) {
       case 'فعالیت های من':
         redirect('/panel/mytodo');
         break;
+      case 'افزودن میز کار':
+        redirect('/panel/workSpase');
+        break;
 
       default:
         break;
@@ -91,8 +94,6 @@ export default function Panel(props) {
       case 'پروفایل':
         redirect('/panel/profile');
         break;
-      case 'تنظیمات':
-        redirect('/panel/settings');
 
       default:
         break;
