@@ -18,6 +18,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import GppMaybeRoundedIcon from '@mui/icons-material/GppMaybeRounded';
 // for date
 const options = {
   weekday: 'long',
@@ -29,6 +30,8 @@ const options = {
 };
 
 const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
+  const [deleteState, setDeleteState] = React.useState(false);
+
   const deleteHandler = () => {
     DeleteTodo(id).then((res) => {
       setChange(new Date());
@@ -59,10 +62,6 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
     setOpen(false);
   };
 
-  const showHandler = (e) => {
-    console.log(e);
-  };
-
   return (
     <div className='box-todo'>
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
@@ -85,11 +84,17 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
         </CardContent>
         <CardActions>
           <div className='card-actions'>
-            <Tooltip title='حدف'>
-              <IconButton size='small' color='error' onClick={deleteHandler}>
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
+            <IconButton size='small' color='error'>
+              {!deleteState ? (
+                <Tooltip title='حدف'>
+                  <DeleteIcon onClick={() => setDeleteState(true)} />
+                </Tooltip>
+              ) : (
+                <Tooltip title='مطمئنید'>
+                  <GppMaybeRoundedIcon onClick={deleteHandler} />
+                </Tooltip>
+              )}
+            </IconButton>
             <Tooltip title='تکمیل کردن'>
               <IconButton size='small' color='info' onClick={completedHandler}>
                 <CheckIcon />
