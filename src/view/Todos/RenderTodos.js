@@ -55,8 +55,9 @@ const MyTodo = () => {
     setIsLoading(true);
     GetuserTodo().then((res) => {
       setOpen(false);
-      setTodo(res.todos);
       setIsLoading(false);
+      setTodo(res.todos);
+      setLoadAddTodo(false);
     });
   }, [change]);
 

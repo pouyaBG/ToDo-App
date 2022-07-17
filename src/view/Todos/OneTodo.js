@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import {
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -31,8 +32,10 @@ const options = {
 
 const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   const [deleteState, setDeleteState] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const deleteHandler = () => {
+    setIsLoading(true);
     DeleteTodo(id).then((res) => {
       setChange(new Date());
     });
@@ -91,7 +94,13 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
                 </Tooltip>
               ) : (
                 <Tooltip title='مطمئنید'>
-                  <GppMaybeRoundedIcon onClick={deleteHandler} />
+                  {!isLoading ? (
+                    <GppMaybeRoundedIcon
+                      onClick={deleteHandler}
+                    />
+                  ) : (
+                    <CircularProgress sx={{ color: 'red' }} size={22} />
+                  )}
                 </Tooltip>
               )}
             </IconButton>
