@@ -54,6 +54,7 @@ const MyTodo = () => {
 
   React.useEffect(() => {
     setIsLoading(true);
+    setTodo([])
     GetuserTodo().then((res) => {
       setOpen(false);
       setIsLoading(false);
