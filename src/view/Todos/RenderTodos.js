@@ -61,13 +61,13 @@ const MyTodo = () => {
       setOpen(false);
       setIsLoading(false);
       setState(res.todos);
-      setLoadAddTodo(false);
     });
   }, []);
   
   React.useEffect(() => {
     GetuserTodo().then((res) => {
       setOpen(false);
+      setLoadAddTodo(false);
       setState(res.todos);
     });
   }, [change]);
@@ -125,6 +125,8 @@ const MyTodo = () => {
       <section className={style.container_todo}>
         {isloading ? (
           <>
+            <LoadingPreview />
+            <LoadingPreview />
             <LoadingPreview />
             <LoadingPreview />
           </>
