@@ -38,6 +38,7 @@ const options = {
 const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   const [deleteState, setDeleteState] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const deleteHandler = () => {
     setIsLoading(true);
@@ -45,12 +46,12 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       setChange(new Date());
     });
   };
-  const completedHandler = () => {
+  const completedHandler = (completed) => {
     PostComplatedTodo(id, {
       text: text,
-      completed: !completed,
+      completed,
       timeStart: timeStart,
-      timeEnd: new Date(),
+      timeEnd: completed ? new Date() : null,
     })
       .then((res) => {
         setChange(new Date());
@@ -60,22 +61,20 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       });
   };
 
-  const uncompletedHandler = () => {
-    PostUnComplatedTodo(id, {
-      text: text,
-      completed: !completed,
-      timeStart: timeStart,
-      timeEnd: null,
-    })
-      .then((res) => {
-        setChange(new Date());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const [open, setOpen] = React.useState(false);
+//   const uncompletedHandler = () => {
+//     PostUnComplatedTodo(id, {
+//       text: text,
+//       completed: !completed,
+//       timeStart: timeStart,
+//       timeEnd: null,
+//     })
+//       .then((res) => {
+//         setChange(new Date());
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -136,7 +135,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
                 <IconButton
                   size='small'
                   color='info'
-                  onClick={completedHandler}>
+                  onClick={()=> completedHandler(true)}>
                   <DoneAllSharpIcon />
                 </IconButton>
               </Tooltip>
@@ -145,7 +144,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
                 <IconButton
                   size='small'
                   color='info'
-                  onClick={uncompletedHandler}>
+                  onClick={()=> completedHandler(false)}>
                   <RemoveDoneSharpIcon />
                 </IconButton>
               </Tooltip>
