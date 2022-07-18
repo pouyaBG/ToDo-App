@@ -8,7 +8,6 @@ import { PostComplatedTodo } from '../../services/postApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import {
-  Button,
   CircularProgress,
   Dialog,
   DialogActions,
@@ -20,6 +19,8 @@ import {
 } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import GppMaybeRoundedIcon from '@mui/icons-material/GppMaybeRounded';
+import style from './style.module.scss';
+
 // for date
 const options = {
   weekday: 'long',
@@ -66,7 +67,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   };
 
   return (
-    <div className='box-todo'>
+    <div className={style.box_todo}>
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
         <CardContent
           sx={{
@@ -76,9 +77,9 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
                 : 'rgba(255, 123, 0, 0.459)'
             }`,
           }}
-          className='body'
+          className={style.body}
           onClick={handleClickOpen}>
-          <Typography variant='body1' className='text-body'>
+          <Typography variant='body1' className={style.text_body}>
             {text}
           </Typography>
 
@@ -95,7 +96,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <div className='card-actions'>
+          <div className={style.card_actions}>
             <IconButton size='small' color='error'>
               {!deleteState ? (
                 <Tooltip title='حدف'>
