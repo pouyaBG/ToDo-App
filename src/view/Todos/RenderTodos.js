@@ -41,6 +41,7 @@ HideOnScroll.propTypes = {
 
 const MyTodo = () => {
   const [todo, setTodo] = React.useState(null);
+  const [state , setState] = React.useState(null)
   const [isloading, setIsLoading] = React.useState(false);
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
@@ -58,7 +59,7 @@ const MyTodo = () => {
     GetuserTodo().then((res) => {
       setOpen(false);
       setIsLoading(false);
-      setTodo(res.todos);
+      setState(res.todos);
       setLoadAddTodo(false);
     });
   }, [change]);
@@ -118,13 +119,11 @@ const MyTodo = () => {
           <>
             <LoadingPreview />
             <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
           </>
         ) : todo == null ? (
           'nothing todo'
         ) : (
-          todo.map((items) => (
+          state.map((items) => (
             <OneTodo
               key={items.id}
               {...items}
