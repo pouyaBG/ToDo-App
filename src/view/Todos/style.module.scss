@@ -1,4 +1,4 @@
-.container-todo {
+.container_todo {
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -9,7 +9,7 @@
   row-gap: 20px;
   margin-top: 31px;
 
-  .box-todo {
+  .box_todo {
     width: 100%;
     height: 100%;
     position: relative;
@@ -19,7 +19,7 @@
     align-items: center;
     transition: all 0.3s ease-in-out;
 
-    .container-data {
+    .container_data {
       display: flex;
       width: 100%;
       justify-content: space-around;
@@ -29,23 +29,18 @@
     }
   }
 
-  .button-addTodo {
+  .button_addTodo {
     position: fixed;
     bottom: 20px;
     right: 10px;
   }
 }
 
-.data {
-  text-decoration: underline;
-  align-items: center;
-  color: #999;
-}
 #alert-dialog-title {
   font-size: 17px;
   transition: all 0.3s;
 }
-.todo-description {
+.todo_description {
   margin-top: 1px;
   height: 150px;
   width: 200px;
@@ -56,13 +51,13 @@
   border-radius: 5px;
   border: 2px solid #ccc;
   transition: all 0.3s;
-
   &:active,
   &:focus-visible {
     outline: none;
     border: 2px solid rgb(29, 134, 231);
   }
 }
+
 .error_null {
   color: red;
   margin-top: 2px;
@@ -70,21 +65,8 @@
   visibility: hidden;
   transition: all 0.3s;
 }
-@media screen and (min-width: 768px) {
-  #alert-dialog-title {
-    font-size: 25px;
-  }
-  .todo-description {
-    width: 450px;
-  }
-  .error_null {
-    color: red;
-    margin-top: 2px;
-    font-size: 16px;
-    visibility: hidden;
-  }
-}
-.loading-skeleton {
+
+.loading_skeleton {
   span {
     margin: 7px 0;
     width: calc(100% - 20px) !important;
@@ -92,7 +74,7 @@
   }
 }
 
-.text-body {
+.text_body {
   font-size: 20px;
   max-width: 200px;
   display: block; /* or inline-block */
@@ -110,13 +92,12 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 8px;
-
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
   }
 }
 
-.card-actions {
+.card_actions {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -124,23 +105,38 @@
   padding: 0px;
   margin: 0px;
 }
-
-.error-message_null {
-  transition: all 0.5s;
-  margin: 5px;
-  color: red;
-  width: 100%;
-  visibility: hidden;
+.btn {
+  background-image: linear-gradient(
+    -425deg,
+    #77ffd2 0%,
+    #6297db 20%,
+    #1eecff 100%
+  );
 }
-
+// responsive
 @media (min-width: 600px) {
-  .container-todo {
+  .container_todo {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1100px) {
-  .container-todo {
+  .container_todo {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #alert_dialog_title {
+    font-size: 25px;
+  }
+  .todo_description {
+    width: 450px;
+  }
+  .error_null {
+    color: red;
+    margin-top: 2px;
+    font-size: 16px;
+    visibility: hidden;
   }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './style.scss';
+import style from './style.module.scss';
 import { toast } from 'react-toastify';
 import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router';
 import OneTodo from './OneTodo';
 import Panel from '../Dashboard/Panel';
 import Dialog from '@mui/material/Dialog';
+
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -62,8 +63,8 @@ const MyTodo = () => {
   }, [change]);
 
   const addTodoHandler = () => {
-    const discriptionTodo = document.querySelector('.todo-description');
-    const erorNull = document.querySelector('.error_null');
+    const discriptionTodo = document.querySelector('#todo-description');
+    const erorNull = document.querySelector('#error_null');
     if (discriptionTodo.value === '') {
       erorNull.style.visibility = 'visible';
       setTimeout(() => {
@@ -94,7 +95,7 @@ const MyTodo = () => {
   function LoadingPreview() {
     return (
       <div
-        className='loading-skeleton'
+        className={style.loading_skeleton}
         style={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -111,7 +112,7 @@ const MyTodo = () => {
   return (
     <>
       <Panel />
-      <section className='container-todo'>
+      <section className={style.container_todo}>
         {isloading ? (
           <>
             <LoadingPreview />
@@ -137,18 +138,21 @@ const MyTodo = () => {
           onClose={handleClose}
           aria-labelledby='alert-dialog-title'
           aria-describedby='alert-dialog-description'>
-          <DialogTitle id='alert-dialog-title'>
+          <DialogTitle id={style.alert_dialog_title}>
             متن فعالیت خود را وارد کنید !
           </DialogTitle>
           <DialogContent>
-            <textarea className='todo-description'></textarea>
-            <p className='error_null'>لطفا توضیحات فعالیت خود را وارد کنید!</p>
+            <textarea
+              id='todo-description'
+              className={style.todo_description}></textarea>
+            <p id='error_null' className={style.error_null}>
+              لطفا توضیحات فعالیت خود را وارد کنید!
+            </p>
           </DialogContent>
           <DialogActions>
             <Button
               size='small'
               color='primary'
-              className='btn-addTodo'
               onClick={addTodoHandler}
               setChange={setChange}>
               {!loadAddTodo ? (
@@ -168,14 +172,11 @@ const MyTodo = () => {
             direction='row'
             spacing={0}
             position='fixed'
-            className='button-addTodo'>
+            className={style.button_addTodo}>
             <Button
               variant='contained'
               endIcon={<AddIcon />}
-              style={{
-                backgroundImage:
-                  'linear-gradient(-425deg, #77ffd2 0%, #6297db 20%, #1eecff 100%)',
-              }}
+              className={style.btn}
               onClick={handleOpen}>
               اضافه کردن فعالیت
             </Button>
