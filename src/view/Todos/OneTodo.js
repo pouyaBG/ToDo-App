@@ -68,7 +68,16 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   return (
     <div className='box-todo'>
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
-        <CardContent className='body' onClick={handleClickOpen}>
+        <CardContent
+          sx={{
+            backgroundColor: `${
+              completed
+                ? 'rgba(68, 212, 11, 0.459)'
+                : 'rgba(255, 123, 0, 0.459)'
+            }`,
+          }}
+          className='body'
+          onClick={handleClickOpen}>
           <Typography variant='body1' className='text-body'>
             {text}
           </Typography>
@@ -95,9 +104,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
               ) : (
                 <Tooltip title='مطمئنید'>
                   {!isLoading ? (
-                    <GppMaybeRoundedIcon
-                      onClick={deleteHandler}
-                    />
+                    <GppMaybeRoundedIcon onClick={deleteHandler} />
                   ) : (
                     <CircularProgress sx={{ color: 'red' }} size={22} />
                   )}
