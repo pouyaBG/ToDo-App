@@ -37,6 +37,7 @@ const options = {
 
 const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   const [deleteState, setDeleteState] = React.useState(false);
+  const [loadingCompleted , setLoadingCompleted ] = React.useState(false); 
   const [isLoading, setIsLoading] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -47,6 +48,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
     });
   };
   const completedHandler = (completed) => {
+    setLoadingCompleted(true)
     PostComplatedTodo(id, {
       text: text,
       completed,
@@ -55,6 +57,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
     })
       .then((res) => {
         setChange(new Date());
+        setLoadingCompleted(false)
       })
       .catch((err) => {
         console.log(err);
@@ -130,7 +133,11 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
                 </Tooltip>
               )}
             </IconButton>
-            {!completed ? (
+            {
+            loadingCompleted ?
+            <CircularProgress size={22} />
+            :
+            !completed ? (
               <Tooltip title='تکمیل کردن'>
                 <IconButton
                   size='small'
