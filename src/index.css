@@ -12,8 +12,7 @@
   direction: rtl !important;
   text-align: right !important;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  
 }
+

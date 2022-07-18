@@ -40,30 +40,27 @@ HideOnScroll.propTypes = {
 };
 
 const MyTodo = () => {
-  const [todo, setTodo] = React.useState(null);
-  const [state , setState] = React.useState(null)
+  const [state, setState] = React.useState(null)
   const [isloading, setIsLoading] = React.useState(false);
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
-  const [change2, setChange2] = React.useState(new Date());
+  // modal functions
+  const [open, setOpen] = React.useState(false);
+
   const redirect = useNavigate();
 
   React.useEffect(() => {
     if (localStorage.getItem('token') == null) {
       redirect('/');
     }
-  }, []);
-
-  React.useEffect(() => {
     setIsLoading(true);
-    setTodo([])
     GetuserTodo().then((res) => {
       setOpen(false);
       setIsLoading(false);
       setState(res.todos);
     });
   }, []);
-  
+
   React.useEffect(() => {
     GetuserTodo().then((res) => {
       setOpen(false);
@@ -95,10 +92,9 @@ const MyTodo = () => {
     }
   };
   const complateHandler = (e) => {
-    console.log(e);
+    // console.log(e);
   };
-  // modal functions
-  const [open, setOpen] = React.useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -130,7 +126,7 @@ const MyTodo = () => {
             <LoadingPreview />
             <LoadingPreview />
           </>
-        ) : todo == null ? (
+        ) : state == null ? (
           'nothing todo'
         ) : (
           state.map((items) => (
@@ -197,4 +193,4 @@ const MyTodo = () => {
   );
 };
 
-export default MyTodo;
+export default React.memo(MyTodo);

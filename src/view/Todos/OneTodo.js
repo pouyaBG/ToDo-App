@@ -35,7 +35,7 @@ const options = {
   second: 'numeric',
 };
 
-const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
+const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange  }) => {
   const [deleteState, setDeleteState] = React.useState(false);
   const [loadingCompleted , setLoadingCompleted ] = React.useState(false); 
   const [isLoading, setIsLoading] = React.useState(false);
@@ -45,8 +45,10 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
     setIsLoading(true);
     DeleteTodo(id).then((res) => {
       setChange(new Date());
+      setIsLoading(false)
     });
   };
+
   const completedHandler = (completed) => {
     setLoadingCompleted(true)
     PostComplatedTodo(id, {
@@ -183,4 +185,4 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   );
 };
 
-export default OneTodo;
+export default React.memo(OneTodo);
