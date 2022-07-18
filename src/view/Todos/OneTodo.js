@@ -4,9 +4,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DeleteTodo from '../../services/deleteApi';
-import { PostComplatedTodo } from '../../services/updateApi';
+import {
+  PostComplatedTodo,
+  PostUnComplatedTodo,
+} from '../../services/updateApi';
 import DeleteIcon from '@mui/icons-material/Delete';
-import CheckIcon from '@mui/icons-material/Check';
 import {
   CircularProgress,
   Dialog,
@@ -19,6 +21,8 @@ import {
 } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import GppMaybeRoundedIcon from '@mui/icons-material/GppMaybeRounded';
+import DoneAllSharpIcon from '@mui/icons-material/DoneAllSharp';
+import RemoveDoneSharpIcon from '@mui/icons-material/RemoveDoneSharp';
 import style from './style.module.scss';
 
 // for date
@@ -47,6 +51,21 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       completed: !completed,
       timeStart: timeStart,
       timeEnd: new Date(),
+    })
+      .then((res) => {
+        setChange(new Date());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const uncompletedHandler = () => {
+    PostUnComplatedTodo(id, {
+      text: text,
+      completed: !completed,
+      timeStart: timeStart,
+      timeEnd: null,
     })
       .then((res) => {
         setChange(new Date());
@@ -112,11 +131,25 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
                 </Tooltip>
               )}
             </IconButton>
-            <Tooltip title='تکمیل کردن'>
-              <IconButton size='small' color='info' onClick={completedHandler}>
-                <CheckIcon />
-              </IconButton>
-            </Tooltip>
+            {!completed ? (
+              <Tooltip title='تکمیل کردن'>
+                <IconButton
+                  size='small'
+                  color='info'
+                  onClick={completedHandler}>
+                  <DoneAllSharpIcon />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Tooltip title='تکمیل نشده'>
+                <IconButton
+                  size='small'
+                  color='info'
+                  onClick={uncompletedHandler}>
+                  <RemoveDoneSharpIcon />
+                </IconButton>
+              </Tooltip>
+            )}
           </div>
         </CardActions>
       </Card>
