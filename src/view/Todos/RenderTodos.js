@@ -45,6 +45,7 @@ const MyTodo = () => {
   const [isloading, setIsLoading] = React.useState(false);
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
+  const [change2, setChange2] = React.useState(new Date());
   const redirect = useNavigate();
 
   React.useEffect(() => {
@@ -61,6 +62,13 @@ const MyTodo = () => {
       setIsLoading(false);
       setState(res.todos);
       setLoadAddTodo(false);
+    });
+  }, []);
+  
+  React.useEffect(() => {
+    GetuserTodo().then((res) => {
+      setOpen(false);
+      setState(res.todos);
     });
   }, [change]);
 
