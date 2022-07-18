@@ -1,6 +1,4 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import style from './Profile.module.scss';
 import {
   Avatar,
   Button,
@@ -9,16 +7,25 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  Modal,
   Stack,
   TextField,
   Tooltip,
+  Typography,
 } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { GetUserInfo } from '../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CreateIcon from '@mui/icons-material/Create';
 import Panel from '../Dashboard/Panel';
+import Box from '@mui/material/Box';
+import Backdrop from '@mui/material/Backdrop';
+import style from './Profile.module.scss';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { width } from '@mui/system';
+import { postUpload } from '../../services/postApi';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const [UserInfo, setUserInfo] = useState({
@@ -32,6 +39,7 @@ const Profile = () => {
         name: res.data.fullname,
         email: res.data.email,
         // imageUser: res.data.avatar,
+        userid: res.data.userid
       });
     });
   }, []);
@@ -40,6 +48,44 @@ const Profile = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const styleModal = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    border: '1px solid #ccc',
+    boxShadow: 30,
+    p: 3,
+    borderRadius: 2,
+  };
+
+
+  function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
+  function uploadProfile(e) {
+    console.log(e.target.files[0]);
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = function () {
+      // console.log(reader.result);
+      postUpload({
+        base64Image: reader.result
+      }).then(res => {
+        toast.success(res.message)
+      })
+    };
+  }
 
   return (
     <>
@@ -79,7 +125,7 @@ const Profile = () => {
             <Avatar alt={UserInfo.name} src={UserInfo.imageUser} />
             <Button variant='outlined' component='label' size='small'>
               بارگذاری عکس
-              <input type='file' hidden />
+              <input type='file' hidden onChange={uploadProfile} />
             </Button>
           </Stack>
           <TextField
