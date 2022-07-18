@@ -4,7 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DeleteTodo from '../../services/deleteApi';
-import { PostComplatedTodo } from '../../services/postApi';
+import { PostComplatedTodo } from '../../services/updateApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import {
