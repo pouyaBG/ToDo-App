@@ -13,7 +13,6 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import axios from "axios";
 import { useEffect, useState } from 'react';
 import { GetUserInfo } from '../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -75,34 +74,17 @@ const Profile = () => {
   }
 
   function uploadProfile(e) {
-
-    const form = new FormData();
-    form.append("UPLOADCARE_PUB_KEY", "7faf571ab3bc71e26eb6");
-    form.append("file", e.target.files[0]);
-
-    const options = {
-      method: 'POST',
-      url: 'https://upload.uploadcare.com/base',
-      headers: { 'content-type': 'multipart/form-data; boundary=---011000010111000001101001' },
-      data: form
+    console.log(e.target.files[0]);
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = function () {
+      // console.log(reader.result);
+      postUpload({
+        base64Image: reader.result
+      }).then(res => {
+        toast.success(res.message)
+      })
     };
-
-    axios.request(options).then(function (response) {
-      console.log(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
-
-    // var reader = new FileReader();
-    // reader.readAsDataURL(e.target.files[0]);
-    // reader.onload = function () {
-    //   // console.log(reader.result);
-    //   postUpload({
-    //     base64Image: reader.result
-    //   }).then(res => {
-    //     toast.success(res.message)
-    //   })
-    // };
   }
 
   return (
