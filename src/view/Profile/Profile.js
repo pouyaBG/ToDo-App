@@ -13,6 +13,7 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import axios from "axios";
 import { useEffect, useState } from 'react';
 import { GetUserInfo } from '../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -24,6 +25,8 @@ import style from './Profile.module.scss';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { width } from '@mui/system';
+import { postUpload } from '../../services/postApi';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const [UserInfo, setUserInfo] = useState({
@@ -37,6 +40,7 @@ const Profile = () => {
         name: res.data.fullname,
         email: res.data.email,
         // imageUser: res.data.avatar,
+        userid: res.data.userid
       });
     });
   }, []);
@@ -57,6 +61,49 @@ const Profile = () => {
     p: 3,
     borderRadius: 2,
   };
+
+
+  function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
+  function uploadProfile(e) {
+
+    const form = new FormData();
+    form.append("UPLOADCARE_PUB_KEY", "7faf571ab3bc71e26eb6");
+    form.append("file", e.target.files[0]);
+
+    const options = {
+      method: 'POST',
+      url: 'https://upload.uploadcare.com/base',
+      headers: { 'content-type': 'multipart/form-data; boundary=---011000010111000001101001' },
+      data: form
+    };
+
+    axios.request(options).then(function (response) {
+      console.log(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
+
+    // var reader = new FileReader();
+    // reader.readAsDataURL(e.target.files[0]);
+    // reader.onload = function () {
+    //   // console.log(reader.result);
+    //   postUpload({
+    //     base64Image: reader.result
+    //   }).then(res => {
+    //     toast.success(res.message)
+    //   })
+    // };
+  }
 
   return (
     <>
@@ -96,7 +143,7 @@ const Profile = () => {
             <Avatar alt={UserInfo.name} src={UserInfo.imageUser} />
             <Button variant='outlined' component='label' size='small'>
               بارگذاری عکس
-              <input type='file' hidden />
+              <input type='file' hidden onChange={uploadProfile} />
             </Button>
           </Stack>
           <TextField

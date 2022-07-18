@@ -19,3 +19,13 @@ export const PostComplatedTodo = async (id, data) => {
   const response = await Client().put(`/user/todos/${id}/completed`, data);
   return response.data;
 };
+
+export async function postUpload(data) {
+  const response = await Client().post(`/upload/profile/image`, data, {
+    onUploadProgress: function (progressEvent) {
+      var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+      console.log(percentCompleted)
+    }
+  });
+  return response.data;
+};
