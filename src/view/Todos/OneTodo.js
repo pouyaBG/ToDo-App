@@ -35,7 +35,7 @@ const options = {
   second: 'numeric',
 };
 
-const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
+const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange , setChange2 }) => {
   const [deleteState, setDeleteState] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -43,7 +43,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   const deleteHandler = () => {
     setIsLoading(true);
     DeleteTodo(id).then((res) => {
-      setChange(new Date());
+      setChange2(new Date());
     });
   };
   const completedHandler = (completed) => {
@@ -54,7 +54,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       timeEnd: completed ? new Date() : null,
     })
       .then((res) => {
-        setChange(new Date());
+        setChange2(new Date());
       })
       .catch((err) => {
         console.log(err);
