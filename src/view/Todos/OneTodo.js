@@ -94,8 +94,8 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
           sx={{
             backgroundColor: `${
               completed
-                ? 'rgba(68, 212, 11, 0.459)'
-                : 'rgba(255, 123, 0, 0.459)'
+                ? "#00b10c98"
+                : "#f0932b"
             }`,
           }}
           className={style.body}
