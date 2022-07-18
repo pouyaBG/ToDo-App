@@ -35,8 +35,9 @@ const options = {
   second: 'numeric',
 };
 
-const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, loadingCompleted, setLoadingCompleted }) => {
+const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   const [deleteState, setDeleteState] = React.useState(false);
+  const [loadingCompleted , setLoadingCompleted ] = React.useState(false); 
   const [isLoading, setIsLoading] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -63,20 +64,20 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, loadingCo
       });
   };
 
-  //   const uncompletedHandler = () => {
-  //     PostUnComplatedTodo(id, {
-  //       text: text,
-  //       completed: !completed,
-  //       timeStart: timeStart,
-  //       timeEnd: null,
-  //     })
-  //       .then((res) => {
-  //         setChange(new Date());
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   };
+//   const uncompletedHandler = () => {
+//     PostUnComplatedTodo(id, {
+//       text: text,
+//       completed: !completed,
+//       timeStart: timeStart,
+//       timeEnd: null,
+//     })
+//       .then((res) => {
+//         setChange(new Date());
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -91,10 +92,11 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, loadingCo
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
         <CardContent
           sx={{
-            backgroundColor: `${completed
+            backgroundColor: `${
+              completed
                 ? 'rgba(68, 212, 11, 0.459)'
                 : 'rgba(255, 123, 0, 0.459)'
-              }`,
+            }`,
           }}
           className={style.body}
           onClick={handleClickOpen}>
@@ -132,28 +134,28 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, loadingCo
               )}
             </IconButton>
             {
-              loadingCompleted ?
-                <CircularProgress size={22} />
-                :
-                !completed ? (
-                  <Tooltip title='تکمیل کردن'>
-                    <IconButton
-                      size='small'
-                      color='info'
-                      onClick={() => completedHandler(true)}>
-                      <DoneAllSharpIcon />
-                    </IconButton>
-                  </Tooltip>
-                ) : (
-                  <Tooltip title='تکمیل نشده'>
-                    <IconButton
-                      size='small'
-                      color='info'
-                      onClick={() => completedHandler(false)}>
-                      <RemoveDoneSharpIcon />
-                    </IconButton>
-                  </Tooltip>
-                )}
+            loadingCompleted ?
+            <CircularProgress size={22} />
+            :
+            !completed ? (
+              <Tooltip title='تکمیل کردن'>
+                <IconButton
+                  size='small'
+                  color='info'
+                  onClick={()=> completedHandler(true)}>
+                  <DoneAllSharpIcon />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Tooltip title='تکمیل نشده'>
+                <IconButton
+                  size='small'
+                  color='info'
+                  onClick={()=> completedHandler(false)}>
+                  <RemoveDoneSharpIcon />
+                </IconButton>
+              </Tooltip>
+            )}
           </div>
         </CardActions>
       </Card>

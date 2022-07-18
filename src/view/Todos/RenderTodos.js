@@ -41,10 +41,9 @@ HideOnScroll.propTypes = {
 
 const MyTodo = () => {
   const [todo, setTodo] = React.useState(null);
-  const [state, setState] = React.useState(null)
+  const [state , setState] = React.useState(null)
   const [isloading, setIsLoading] = React.useState(false);
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
-  const [loadingCompleted, setLoadingCompleted] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
   const [change2, setChange2] = React.useState(new Date());
   const redirect = useNavigate();
@@ -64,7 +63,7 @@ const MyTodo = () => {
       setState(res.todos);
     });
   }, []);
-
+  
   React.useEffect(() => {
     GetuserTodo().then((res) => {
       setOpen(false);
@@ -140,8 +139,6 @@ const MyTodo = () => {
               {...items}
               onComplate={complateHandler}
               setChange={setChange}
-              loadingCompleted={loadingCompleted}
-              setLoadingCompleted={setLoadingCompleted}
             />
           ))
         )}
