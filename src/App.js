@@ -5,8 +5,9 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
-// routes
-import routes from './routes';
+// pages
+import Auth from './view/Auth';
+import Panel from "./components/layout/Panel"
 
 function App() {
   // Create rtl cache
@@ -19,9 +20,12 @@ function App() {
     <CacheProvider value={cacheRtl}>
       <div className='App'>
         <Routes>
-          {routes.map((route, index) => {
-            return <Route {...route} index={index} />;
-          })}
+          <Route path='/' element={<Auth />} />
+          <Route path="panel" element={<Panel />}>
+            <Route path="todos" />
+            <Route path="workspase" />
+            <Route path="profile" />
+          </Route>
         </Routes>
       </div>
     </CacheProvider>

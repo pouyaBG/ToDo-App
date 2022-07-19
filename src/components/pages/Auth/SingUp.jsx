@@ -94,7 +94,7 @@ export default function SingUp() {
         .then((response) => {
           setAlert({ ...alert, severity: 'success', msg: 'شما وارد شدید' });
           localStorage.setItem('token', response.token);
-          redierct('/panel/mytodo');
+          redierct('/panel/todos');
           setIsLoading(false);
           handleClick();
         })

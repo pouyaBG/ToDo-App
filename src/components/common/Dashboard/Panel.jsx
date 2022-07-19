@@ -19,7 +19,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 // style
 import style from './panel.module.scss';
-import { GetUserInfo } from '../../services/getApi';
+import { GetUserInfo } from '../../../services/getApi';
 import { Stack } from '@mui/material';
 
 const pages = ['فعالیت های من', 'گزارش گیری', 'افزودن میز کار'];
@@ -67,7 +67,7 @@ export default function Panel(props) {
     console.log(e);
     switch (e.target.innerHTML) {
       case 'فعالیت های من':
-        redirect('/panel/mytodo');
+        redirect('/panel/todos');
         break;
 
       default:
@@ -78,10 +78,10 @@ export default function Panel(props) {
   const handelOpenPage = (e) => {
     switch (e.target.innerText) {
       case 'فعالیت های من':
-        redirect('/panel/mytodo');
+        redirect('/panel/todos');
         break;
       case 'افزودن میز کار':
-        redirect('/panel/workSpase');
+        redirect('/panel/workspase');
         break;
 
       default:
@@ -101,11 +101,7 @@ export default function Panel(props) {
     setAnchorElUser(null);
   };
 
-  React.useEffect(() => {
-    if (localStorage.getItem('token') == null) {
-      redirect('/');
-    }
-  }, []);
+
   React.useEffect(() => {
     GetUserInfo().then((res) => {
       setUserName(res.data.fullname);
@@ -255,7 +251,9 @@ export default function Panel(props) {
       </HideOnScroll>
       <Toolbar />
       <Container>
-        <Box sx={{ my: 2 }}></Box>
+        <Box sx={{ my: 2 }}>
+          {props.children}
+        </Box>
       </Container>
     </React.Fragment>
   );

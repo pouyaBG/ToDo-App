@@ -14,17 +14,16 @@ import {
   Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { GetUserInfo } from '../../services/getApi';
+import { GetUserInfo } from '../../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CreateIcon from '@mui/icons-material/Create';
-import Panel from '../Dashboard/Panel';
 import Box from '@mui/material/Box';
 import Backdrop from '@mui/material/Backdrop';
 import style from './Profile.module.scss';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { width } from '@mui/system';
-import { postUpload } from '../../services/postApi';
+import { postUpload } from '../../../services/postApi'; 
 import { toast } from 'react-toastify';
 
 const Profile = () => {
@@ -88,7 +87,6 @@ const Profile = () => {
 
   return (
     <>
-      <Panel />
       <div className={style.container}>
         <div className={style.cardColor}></div>
         <h1 className={style.fullName}>{UserInfo.name}</h1>
