@@ -92,6 +92,28 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
     setOpen(false);
   };
 
+  function getLengthTime(end, start) {
+    const Delta = Math.abs(new Date(end) - new Date(start))
+
+    let result;
+    let min = (Delta / 1000) / 60
+
+    if (min < 1) {
+      result = "زیر یک دقیقه"
+    }
+    else if (min < 60) {
+      result = Math.floor(min) + "دقیقه"
+    }
+    else if (min > 60) {
+      result = Math.floor((min / 60)) + "ساعت"
+    }
+    else if ((min / 60) / 24 > 1) {
+      result = Math.floor(((min / 60) / 24)) + "روز"
+    }
+
+    return result
+  }
+
   return (
     <div className={style.box_todo}>
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
@@ -138,8 +160,13 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
                 </Tooltip>
               )}
             </IconButton>
+            <span>
+              {
+                timeEnd == null ? "" :
+                  getLengthTime(timeEnd, timeStart)
+              }
+            </span>
             {
-
               loadingCompleted ?
                 <CircularProgress size={22} />
                 :
@@ -174,7 +201,6 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
           </div>
         </CardActions>
       </Card>
-
       <Dialog
         open={open}
         onClose={handleClose}
