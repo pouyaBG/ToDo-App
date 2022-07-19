@@ -6,12 +6,15 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { GetuserTodo } from '../../../services/getApi';
 import {
+  Checkbox,
   CircularProgress,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControlLabel,
   Skeleton,
   Slide,
+  TextField,
   useScrollTrigger,
 } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -41,8 +44,11 @@ HideOnScroll.propTypes = {
 const MyTodo = () => {
   const [state, setState] = React.useState(null)
   const [isloading, setIsLoading] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
+  const [isPointTime, setIsPointTime] = React.useState(false)
+  const [valueTime, setValueTime] = React.useState(null)
   // modal functions
   const [open, setOpen] = React.useState(false);
 
@@ -70,6 +76,13 @@ const MyTodo = () => {
 
   const addTodoHandler = () => {
     const discriptionTodo = document.querySelector('#todo-description');
+    let timePointValue;
+    if (isPointTime) {
+      const timeType = document.getElementById("timeType").value;
+      const timeNumber = document.getElementById("timeNumber").value;
+      timePointValue = timeNumber + timeType
+    }
+
     const erorNull = document.querySelector('#error_null');
     if (discriptionTodo.value === '') {
       erorNull.style.visibility = 'visible';
@@ -83,6 +96,7 @@ const MyTodo = () => {
         completed: false,
         timeStart: null,
         timeEnd: null,
+        pointTime: !isPointTime ? null : timePointValue
       })
         .then(() => setChange(new Date()))
         .catch((err) => {
@@ -94,8 +108,8 @@ const MyTodo = () => {
     // console.log(e);
   };
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleClose2 = () => setOpenModal(false);
 
   function LoadingPreview() {
     return (
@@ -138,17 +152,37 @@ const MyTodo = () => {
         )}
         {/* button add todo for show Dialog */}
         <Dialog
-          open={open}
-          onClose={handleClose}
+          open={openModal}
+          onClose={handleClose2}
           aria-labelledby='alert-dialog-title'
           aria-describedby='alert-dialog-description'>
           <DialogTitle id={style.alert_dialog_title}>
             متن فعالیت خود را وارد کنید !
           </DialogTitle>
           <DialogContent>
-            <textarea
-              id='todo-description'
-              className={style.todo_description}></textarea>
+            <div>
+              <textarea
+                id='todo-description'
+                className={style.todo_description}></textarea>
+            </div>
+            <div style={{
+              display: "flex",
+              alignItems: "center"
+            }}>
+              {
+                !isPointTime ?
+                  <FormControlLabel label="زمان هدف کار ثبت شود ؟" onClick={() => setIsPointTime(true)} control={<Checkbox defaultChecked={isPointTime} />} />
+                  :
+                  <>
+                    <FormControlLabel label="زمان هدف کار ثبت شود ؟" onClick={() => setIsPointTime(false)} control={<Checkbox defaultChecked={isPointTime} />} />
+                    <input id="timeNumber" type="number" defaultValue={0} style={{ height: 40, width: 60, marginLeft: 10, textAlign: "center", padding: 5 }} />
+                    <select id="timeType" style={{ height: 40, width: 80, marginLeft: 10, textAlign: "center", padding: 5 }} >
+                      <option value="ساعت">ساعت</option>
+                      <option value="دقیقه">دقیقه</option>
+                    </select>
+                  </>
+              }
+            </div>
             <p id='error_null' className={style.error_null}>
               لطفا توضیحات فعالیت خود را وارد کنید!
             </p>
@@ -181,7 +215,7 @@ const MyTodo = () => {
               variant='contained'
               endIcon={<AddIcon />}
               className={style.btn}
-              onClick={handleOpen}>
+              onClick={()=> setOpenModal(true)}>
               اضافه کردن فعالیت
             </Button>
           </Stack>
