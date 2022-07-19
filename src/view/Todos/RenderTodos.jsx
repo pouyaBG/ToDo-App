@@ -40,7 +40,7 @@ HideOnScroll.propTypes = {
 };
 
 const MyTodo = () => {
-  const [state, setState] = React.useState(null)
+  const [state, setState] = React.useState(null);
   const [isloading, setIsLoading] = React.useState(false);
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
@@ -110,7 +110,6 @@ const MyTodo = () => {
         }}>
         <Skeleton animation='wave' />
         <Skeleton animation='wave' />
-        <Skeleton animation='wave' />
       </div>
     );
   }
@@ -130,12 +129,7 @@ const MyTodo = () => {
           'nothing todo'
         ) : (
           state.map((items) => (
-            <OneTodo
-              key={items.id}
-              {...items}
-              onComplate={complateHandler}
-              setChange={setChange}
-            />
+            <OneTodo key={items.id} {...items} setChange={setChange} />
           ))
         )}
         {/* button add todo for show Dialog */}

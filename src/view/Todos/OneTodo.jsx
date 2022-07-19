@@ -93,25 +93,22 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   };
 
   function getLengthTime(end, start) {
-    const Delta = Math.abs(new Date(end) - new Date(start))
+    const Delta = Math.abs(new Date(end) - new Date(start));
 
     let result;
-    let min = (Delta / 1000) / 60
+    let min = Delta / 1000 / 60;
 
     if (min < 1) {
-      result = "زیر یک دقیقه"
-    }
-    else if (min < 60) {
-      result = Math.floor(min) + "دقیقه"
-    }
-    else if (min > 60) {
-      result = Math.floor((min / 60)) + "ساعت"
-    }
-    else if ((min / 60) / 24 > 1) {
-      result = Math.floor(((min / 60) / 24)) + "روز"
+      result = 'جدید';
+    } else if (min < 60) {
+      result = Math.floor(min) + 'دقیقه';
+    } else if (min > 60) {
+      result = Math.floor(min / 60) + 'ساعت';
+    } else if (min / 60 / 24 > 1) {
+      result = Math.floor(min / 60 / 24) + 'روز';
     }
 
-    return result
+    return result;
   }
 
   return (
@@ -119,7 +116,13 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
         <CardContent
           sx={{
-            backgroundColor: `${timeStart == null ? "#1d8eff94" : completed ? '#00b10c98' : '#FA8856'}`,
+            backgroundColor: `${
+              timeStart == null
+                ? '#1d8eff94'
+                : completed
+                ? '#00b10c98'
+                : '#FA8856'
+            }`,
           }}
           className={style.body}
           onClick={handleClickOpen}>
@@ -130,11 +133,9 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
           <Typography variant='body2' component='div' marginTop={2}>
             شروع:
             <br></br>
-            {
-              timeStart == null ?
-                "شروع نشده است" :
-                new Date(timeStart).toLocaleString('fa-IR', options)
-            }
+            {timeStart == null
+              ? 'شروع نشده است'
+              : new Date(timeStart).toLocaleString('fa-IR', options)}
           </Typography>
           <Typography variant='body2' component='div' marginTop={2}>
             <p>پایان:</p>
@@ -161,43 +162,38 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
               )}
             </IconButton>
             <span>
-              {
-                timeEnd == null ? "" :
-                  getLengthTime(timeEnd, timeStart)
-              }
+              {timeEnd == null ? '' : getLengthTime(timeEnd, timeStart)}
             </span>
-            {
-              loadingCompleted ?
-                <CircularProgress size={22} />
-                :
-                timeStart == null ?
-                  <Tooltip title='شروع'>
-                    <IconButton
-                      size='small'
-                      color='info'
-                      onClick={() => handleTimeStatrt(true)}>
-                      <CheckIcon />
-                    </IconButton>
-                  </Tooltip>
-                  : !completed ? (
-                    <Tooltip title='تکمیل کردن'>
-                      <IconButton
-                        size='small'
-                        color='info'
-                        onClick={() => completedHandler(true)}>
-                        <DoneAllSharpIcon />
-                      </IconButton>
-                    </Tooltip>
-                  ) : (
-                    <Tooltip title='تکمیل نشده'>
-                      <IconButton
-                        size='small'
-                        color='info'
-                        onClick={() => completedHandler(false)}>
-                        <RemoveDoneSharpIcon />
-                      </IconButton>
-                    </Tooltip>
-                  )}
+            {loadingCompleted ? (
+              <CircularProgress size={22} />
+            ) : timeStart == null ? (
+              <Tooltip title='شروع'>
+                <IconButton
+                  size='small'
+                  color='info'
+                  onClick={() => handleTimeStatrt(true)}>
+                  <CheckIcon />
+                </IconButton>
+              </Tooltip>
+            ) : !completed ? (
+              <Tooltip title='تکمیل کردن'>
+                <IconButton
+                  size='small'
+                  color='info'
+                  onClick={() => completedHandler(true)}>
+                  <DoneAllSharpIcon />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Tooltip title='تکمیل نشده'>
+                <IconButton
+                  size='small'
+                  color='info'
+                  onClick={() => completedHandler(false)}>
+                  <RemoveDoneSharpIcon />
+                </IconButton>
+              </Tooltip>
+            )}
           </div>
         </CardActions>
       </Card>
