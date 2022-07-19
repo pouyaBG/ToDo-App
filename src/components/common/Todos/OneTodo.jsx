@@ -99,7 +99,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
     let min = Delta / 1000 / 60;
 
     if (min < 1) {
-      result = 'جدید';
+      result = Math.floor((Delta / 1000)) + "ثانیه";
     } else if (min < 60) {
       result = Math.floor(min) + 'دقیقه';
     } else if (min > 60) {
