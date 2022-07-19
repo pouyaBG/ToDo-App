@@ -12,7 +12,7 @@
   direction: rtl !important;
   text-align: right !important;
 }
-#root {
+body {
   background: url('./assets/backgroud/159984.webp');
   background-size: cover;
   background-attachment: fixed;

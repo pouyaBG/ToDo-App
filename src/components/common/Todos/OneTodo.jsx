@@ -55,7 +55,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
       completed,
       timeStart: timeStart,
       timeEnd: completed ? new Date() : null,
-      pointTime
+      pointTime,
     })
       .then((res) => {
         setChange(new Date());
