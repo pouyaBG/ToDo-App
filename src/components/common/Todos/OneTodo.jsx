@@ -22,6 +22,7 @@ import DoneAllSharpIcon from '@mui/icons-material/DoneAllSharp';
 import RemoveDoneSharpIcon from '@mui/icons-material/RemoveDoneSharp';
 import style from './style.module.scss';
 import CheckIcon from '@mui/icons-material/Check';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 // for date
 const options = {
@@ -33,7 +34,7 @@ const options = {
   second: 'numeric',
 };
 
-const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
+const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime }) => {
   const [deleteState, setDeleteState] = React.useState(false);
   const [loadingCompleted, setLoadingCompleted] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -111,15 +112,22 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   return (
     <div className={style.box_todo} style={{ margin: 10 }}>
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
+        {
+          pointTime == null ? "" :
+          <Tooltip title="زمان هدف">
+            <span className={style.timeaccest}>
+              <p>{pointTime}</p><AccessTimeIcon />
+            </span>
+          </Tooltip>
+        }
         <CardContent
           sx={{
-            backgroundColor: `${
-              timeStart == null
-                ? '#1d8eff94'
-                : completed
+            backgroundColor: `${timeStart == null
+              ? '#1d8eff94'
+              : completed
                 ? '#00b10c98'
                 : '#FA8856'
-            }`,
+              }`,
           }}
           className={style.body}
           onClick={handleClickOpen}>
