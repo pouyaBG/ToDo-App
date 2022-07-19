@@ -35,9 +35,9 @@ const options = {
   second: 'numeric',
 };
 
-const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange  }) => {
+const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   const [deleteState, setDeleteState] = React.useState(false);
-  const [loadingCompleted , setLoadingCompleted ] = React.useState(false); 
+  const [loadingCompleted, setLoadingCompleted] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
@@ -45,12 +45,12 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange  }) => {
     setIsLoading(true);
     DeleteTodo(id).then((res) => {
       setChange(new Date());
-      setIsLoading(false)
+      setIsLoading(false);
     });
   };
 
   const completedHandler = (completed) => {
-    setLoadingCompleted(true)
+    setLoadingCompleted(true);
     PostComplatedTodo(id, {
       text: text,
       completed,
@@ -59,27 +59,12 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange  }) => {
     })
       .then((res) => {
         setChange(new Date());
-        setLoadingCompleted(false)
+        setLoadingCompleted(false);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-//   const uncompletedHandler = () => {
-//     PostUnComplatedTodo(id, {
-//       text: text,
-//       completed: !completed,
-//       timeStart: timeStart,
-//       timeEnd: null,
-//     })
-//       .then((res) => {
-//         setChange(new Date());
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -94,11 +79,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange  }) => {
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
         <CardContent
           sx={{
-            backgroundColor: `${
-              completed
-                ? "#00b10c98"
-                : "#f0932b"
-            }`,
+            backgroundColor: `${completed ? '#00b10c98' : '#FA8856'}`,
           }}
           className={style.body}
           onClick={handleClickOpen}>
@@ -135,16 +116,14 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange  }) => {
                 </Tooltip>
               )}
             </IconButton>
-            {
-            loadingCompleted ?
-            <CircularProgress size={22} />
-            :
-            !completed ? (
+            {loadingCompleted ? (
+              <CircularProgress size={22} />
+            ) : !completed ? (
               <Tooltip title='تکمیل کردن'>
                 <IconButton
                   size='small'
                   color='info'
-                  onClick={()=> completedHandler(true)}>
+                  onClick={() => completedHandler(true)}>
                   <DoneAllSharpIcon />
                 </IconButton>
               </Tooltip>
@@ -153,7 +132,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange  }) => {
                 <IconButton
                   size='small'
                   color='info'
-                  onClick={()=> completedHandler(false)}>
+                  onClick={() => completedHandler(false)}>
                   <RemoveDoneSharpIcon />
                 </IconButton>
               </Tooltip>
