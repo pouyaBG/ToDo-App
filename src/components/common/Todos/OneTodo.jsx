@@ -112,7 +112,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   }
 
   return (
-    <div className={style.box_todo}>
+    <div className={style.box_todo} style={{margin:10}}>
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
         <CardContent
           sx={{
