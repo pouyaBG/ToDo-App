@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { GetuserTodo } from '../../services/getApi';
+import { GetuserTodo } from '../../../services/getApi';
 import {
   CircularProgress,
   DialogActions,
@@ -15,10 +15,10 @@ import {
   useScrollTrigger,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import { PostTodoUser } from '../../services/postApi';
+import { PostTodoUser } from '../../../services/postApi';
 import { useNavigate } from 'react-router';
 import OneTodo from './OneTodo';
-import Panel from '../Dashboard/Panel';
+import Panel from '../../../view/Dashboard/Panel';
 import Dialog from '@mui/material/Dialog';
 
 function HideOnScroll(props) {

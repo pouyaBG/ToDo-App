@@ -3,11 +3,11 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import DeleteTodo from '../../services/deleteApi';
+import DeleteTodo from '../../../services/deleteApi';
 import {
   PostComplatedTodo,
   PostUnComplatedTodo,
-} from '../../services/updateApi';
+} from '../../../services/updateApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   CircularProgress,
