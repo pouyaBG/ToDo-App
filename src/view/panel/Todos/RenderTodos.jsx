@@ -42,13 +42,13 @@ HideOnScroll.propTypes = {
 };
 
 const MyTodo = () => {
-  const [state, setState] = React.useState(null)
+  const [state, setState] = React.useState(null);
   const [isloading, setIsLoading] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
-  const [isPointTime, setIsPointTime] = React.useState(false)
-  const [valueTime, setValueTime] = React.useState(null)
+  const [isPointTime, setIsPointTime] = React.useState(false);
+  const [valueTime, setValueTime] = React.useState(null);
   // modal functions
   const [open, setOpen] = React.useState(false);
 
@@ -78,9 +78,9 @@ const MyTodo = () => {
     const discriptionTodo = document.querySelector('#todo-description');
     let timePointValue;
     if (isPointTime) {
-      const timeType = document.getElementById("timeType").value;
-      const timeNumber = document.getElementById("timeNumber").value;
-      timePointValue = timeNumber + timeType
+      const timeType = document.getElementById('timeType').value;
+      const timeNumber = document.getElementById('timeNumber').value;
+      timePointValue = timeNumber + timeType;
     }
 
     const erorNull = document.querySelector('#error_null');
@@ -96,7 +96,7 @@ const MyTodo = () => {
         completed: false,
         timeStart: null,
         timeEnd: null,
-        pointTime: !isPointTime ? null : timePointValue
+        pointTime: !isPointTime ? null : timePointValue,
       })
         .then(() => setChange(new Date()))
         .catch((err) => {
@@ -107,7 +107,6 @@ const MyTodo = () => {
   const complateHandler = (e) => {
     // console.log(e);
   };
-
 
   const handleClose2 = () => setOpenModal(false);
 
@@ -165,23 +164,50 @@ const MyTodo = () => {
                 id='todo-description'
                 className={style.todo_description}></textarea>
             </div>
-            <div style={{
-              display: "flex",
-              alignItems: "center"
-            }}>
-              {
-                !isPointTime ?
-                  <FormControlLabel label="زمان هدف کار ثبت شود ؟" onClick={() => setIsPointTime(true)} control={<Checkbox defaultChecked={isPointTime} />} />
-                  :
-                  <>
-                    <FormControlLabel label="زمان هدف کار ثبت شود ؟" onClick={() => setIsPointTime(false)} control={<Checkbox defaultChecked={isPointTime} />} />
-                    <input id="timeNumber" type="number" defaultValue={0} style={{ height: 40, width: 60, marginLeft: 10, textAlign: "center", padding: 5 }} />
-                    <select id="timeType" style={{ height: 40, width: 80, marginLeft: 10, textAlign: "center", padding: 5 }} >
-                      <option value="ساعت">ساعت</option>
-                      <option value="دقیقه">دقیقه</option>
-                    </select>
-                  </>
-              }
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+              }}>
+              {!isPointTime ? (
+                <FormControlLabel
+                  label='زمان هدف کار ثبت شود ؟'
+                  onClick={() => setIsPointTime(true)}
+                  control={<Checkbox defaultChecked={isPointTime} />}
+                />
+              ) : (
+                <>
+                  <FormControlLabel
+                    label='زمان هدف کار ثبت شود ؟'
+                    onClick={() => setIsPointTime(false)}
+                    control={<Checkbox defaultChecked={isPointTime} />}
+                  />
+                  <input
+                    id='timeNumber'
+                    type='number'
+                    defaultValue={0}
+                    style={{
+                      height: 40,
+                      width: 60,
+                      marginLeft: 10,
+                      textAlign: 'center',
+                      padding: 5,
+                    }}
+                  />
+                  <select
+                    id='timeType'
+                    style={{
+                      height: 40,
+                      width: 80,
+                      marginLeft: 10,
+                      textAlign: 'center',
+                      padding: 5,
+                    }}>
+                    <option value='ساعت'>ساعت</option>
+                    <option value='دقیقه'>دقیقه</option>
+                  </select>
+                </>
+              )}
             </div>
             <p id='error_null' className={style.error_null}>
               لطفا توضیحات فعالیت خود را وارد کنید!
@@ -215,8 +241,8 @@ const MyTodo = () => {
               variant='contained'
               endIcon={<AddIcon />}
               className={style.btn}
-              onClick={()=> setOpenModal(true)}>
-              اضافه کردن فعالیت
+              onClick={() => setOpenModal(true)}>
+              افزدون فعالیت
             </Button>
           </Stack>
         </HideOnScroll>
