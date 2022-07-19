@@ -111,7 +111,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
 
   return (
     <div className={style.box_todo} style={{ margin: 10 }}>
-      <Card sx={{ minWidth: 275, maxWidth: 325 }}>
+      <Card sx={{ minWidth: 275, maxWidth: 325 , backgroundColor:"#fff4" , backdropFilter:"blur(16px)" , borderRadius:5 }}>
         {
           pointTime == null ? "" :
           <Tooltip title="زمان هدف">

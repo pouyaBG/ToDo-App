@@ -110,11 +110,10 @@
   cursor: pointer;
   transition: all 0.5s;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 8px;
-
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 8px;
   }
 }
 

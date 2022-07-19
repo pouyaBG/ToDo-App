@@ -13,6 +13,10 @@
   text-align: right !important;
 }
 #root {
-  
+  background: url('./assets/backgroud/159984.webp');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  image-rendering: pixelated;
 }
 
