@@ -1,8 +1,13 @@
 import {
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Skeleton,
   Slide,
   Stack,
+  TextField,
   useScrollTrigger,
 } from '@mui/material';
 import * as React from 'react';
@@ -35,6 +40,7 @@ HideOnScroll.propTypes = {
 const RenderWorkSpase = () => {
   const [state, setState] = useState(null);
   const [isloading, setIsLoading] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
 
   const redirect = useNavigate();
@@ -67,6 +73,7 @@ const RenderWorkSpase = () => {
       </div>
     );
   }
+  const handleClose2 = () => setOpenModal(false);
 
   return (
     <>
@@ -89,7 +96,49 @@ const RenderWorkSpase = () => {
             />
           ))
         )}
-
+        {/* modal */}
+        <Dialog
+          open={openModal}
+          onClose={handleClose2}
+          aria-labelledby='alert-dialog-title'
+          aria-describedby='alert-dialog-description'>
+          <DialogTitle id={style.alert_dialog_title}>
+            متن میزکار خود را وارد کنید !
+          </DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              color='primary'
+              id='standard-basic'
+              margin='dense'
+              label='میزکار'
+              placeholder='اسم میزکار خود را وارد کنید'
+              fullWidth
+              variant='standard'
+            />
+            <TextField
+              autoFocus
+              color='primary'
+              id='standard-basic'
+              margin='dense'
+              label='کد رنگ'
+              sx={{ marginTop: 2 }}
+              placeholder='زنگ میزکار خود را انتخاب کنید'
+              fullWidth
+              variant='standard'
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              size='small'
+              color='primary'
+              // onClick={addTodoHandler}
+              // setChange={setChange}
+            >
+              اضافه کردن
+            </Button>
+          </DialogActions>
+        </Dialog>
         {/* button */}
         <HideOnScroll>
           <Stack
@@ -101,6 +150,7 @@ const RenderWorkSpase = () => {
               variant='contained'
               endIcon={<AddIcon />}
               className={style.btn}
+              onClick={() => setOpenModal(true)}
               // onClick={handleOpen}
             >
               افزودن میز کار
