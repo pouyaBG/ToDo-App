@@ -4,7 +4,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DeleteTodo from '../../../services/deleteApi';
-import { PostComplatedTodo } from '../../../services/updateApi';
+import {
+  PostComplatedTodo,
+  PostUnComplatedTodo,
+} from '../../../services/updateApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   CircularProgress,
@@ -22,7 +25,6 @@ import DoneAllSharpIcon from '@mui/icons-material/DoneAllSharp';
 import RemoveDoneSharpIcon from '@mui/icons-material/RemoveDoneSharp';
 import style from './style.module.scss';
 import CheckIcon from '@mui/icons-material/Check';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 // for date
 const options = {
@@ -34,7 +36,7 @@ const options = {
   second: 'numeric',
 };
 
-const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime }) => {
+const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   const [deleteState, setDeleteState] = React.useState(false);
   const [loadingCompleted, setLoadingCompleted] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -97,7 +99,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
     let min = Delta / 1000 / 60;
 
     if (min < 1) {
-      result = Math.floor((Delta / 1000)) + "ثانیه";
+      result = 'جدید';
     } else if (min < 60) {
       result = Math.floor(min) + 'دقیقه';
     } else if (min > 60) {
@@ -110,24 +112,17 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
   }
 
   return (
-    <div className={style.box_todo} style={{ margin: 10 }}>
+    <div className={style.box_todo} style={{margin:10}}>
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
-        {
-          pointTime == null ? "" :
-          <Tooltip title="زمان هدف">
-            <span className={style.timeaccest}>
-              <p>{pointTime}</p><AccessTimeIcon />
-            </span>
-          </Tooltip>
-        }
         <CardContent
           sx={{
-            backgroundColor: `${timeStart == null
-              ? '#1d8eff94'
-              : completed
+            backgroundColor: `${
+              timeStart == null
+                ? '#1d8eff94'
+                : completed
                 ? '#00b10c98'
                 : '#FA8856'
-              }`,
+            }`,
           }}
           className={style.body}
           onClick={handleClickOpen}>

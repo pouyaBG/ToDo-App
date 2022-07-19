@@ -39,7 +39,7 @@ HideOnScroll.propTypes = {
 };
 
 const MyTodo = () => {
-  const [state, setState] = React.useState(null);
+  const [state, setState] = React.useState(null)
   const [isloading, setIsLoading] = React.useState(false);
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
@@ -107,6 +107,7 @@ const MyTodo = () => {
           width: '100%',
           justifyContent: 'center',
         }}>
+        <Skeleton animation='wave' />
         <Skeleton animation='wave' />
         <Skeleton animation='wave' />
       </div>
@@ -181,7 +182,7 @@ const MyTodo = () => {
               endIcon={<AddIcon />}
               className={style.btn}
               onClick={handleOpen}>
-              افزدون فعالیت
+               افزدون فعالیت
             </Button>
           </Stack>
         </HideOnScroll>
