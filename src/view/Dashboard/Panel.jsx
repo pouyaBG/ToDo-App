@@ -211,7 +211,7 @@ export default function Panel(props) {
 
               <Box sx={{ flexGrow: 0 }}>
                 <div className={style.userName_Box}>
-                  <span className={style.userName}>{userName}</span>
+                  <span className={style.userName} style={{color:"#fff"}}>سلام {userName} عزیز !</span>
                   <Tooltip title='تنظیمات'>
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <Stack>

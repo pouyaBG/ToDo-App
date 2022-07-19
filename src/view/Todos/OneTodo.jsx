@@ -24,6 +24,7 @@ import GppMaybeRoundedIcon from '@mui/icons-material/GppMaybeRounded';
 import DoneAllSharpIcon from '@mui/icons-material/DoneAllSharp';
 import RemoveDoneSharpIcon from '@mui/icons-material/RemoveDoneSharp';
 import style from './style.module.scss';
+import CheckIcon from '@mui/icons-material/Check';
 
 // for date
 const options = {
@@ -66,6 +67,23 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       });
   };
 
+  const handleTimeStatrt = (start) => {
+    setLoadingCompleted(true);
+    PostComplatedTodo(id, {
+      text: text,
+      completed,
+      timeStart: start ? new Date() : null,
+      timeEnd: null,
+    })
+      .then((res) => {
+        setChange(new Date());
+        setLoadingCompleted(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -79,7 +97,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
         <CardContent
           sx={{
-            backgroundColor: `${completed ? '#00b10c98' : '#FA8856'}`,
+            backgroundColor: `${timeStart == null ? "#1d8eff94" : completed ? '#00b10c98' : '#FA8856'}`,
           }}
           className={style.body}
           onClick={handleClickOpen}>
@@ -90,7 +108,11 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
           <Typography variant='body2' component='div' marginTop={2}>
             شروع:
             <br></br>
-            {new Date(timeStart).toLocaleString('fa-IR', options)}
+            {
+              timeStart == null ?
+                "شروع نشده است" :
+                new Date(timeStart).toLocaleString('fa-IR', options)
+            }
           </Typography>
           <Typography variant='body2' component='div' marginTop={2}>
             <p>پایان:</p>
@@ -116,27 +138,39 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
                 </Tooltip>
               )}
             </IconButton>
-            {loadingCompleted ? (
-              <CircularProgress size={22} />
-            ) : !completed ? (
-              <Tooltip title='تکمیل کردن'>
-                <IconButton
-                  size='small'
-                  color='info'
-                  onClick={() => completedHandler(true)}>
-                  <DoneAllSharpIcon />
-                </IconButton>
-              </Tooltip>
-            ) : (
-              <Tooltip title='تکمیل نشده'>
-                <IconButton
-                  size='small'
-                  color='info'
-                  onClick={() => completedHandler(false)}>
-                  <RemoveDoneSharpIcon />
-                </IconButton>
-              </Tooltip>
-            )}
+            {
+
+              loadingCompleted ?
+                <CircularProgress size={22} />
+                :
+                timeStart == null ?
+                  <Tooltip title='شروع'>
+                    <IconButton
+                      size='small'
+                      color='info'
+                      onClick={() => handleTimeStatrt(true)}>
+                      <CheckIcon />
+                    </IconButton>
+                  </Tooltip>
+                  : !completed ? (
+                    <Tooltip title='تکمیل کردن'>
+                      <IconButton
+                        size='small'
+                        color='info'
+                        onClick={() => completedHandler(true)}>
+                        <DoneAllSharpIcon />
+                      </IconButton>
+                    </Tooltip>
+                  ) : (
+                    <Tooltip title='تکمیل نشده'>
+                      <IconButton
+                        size='small'
+                        color='info'
+                        onClick={() => completedHandler(false)}>
+                        <RemoveDoneSharpIcon />
+                      </IconButton>
+                    </Tooltip>
+                  )}
           </div>
         </CardActions>
       </Card>

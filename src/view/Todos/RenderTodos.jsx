@@ -82,7 +82,7 @@ const MyTodo = () => {
       PostTodoUser({
         text: discriptionTodo.value,
         completed: false,
-        timeStart: new Date(),
+        timeStart: null,
         timeEnd: null,
       })
         .then(() => setChange(new Date()))
