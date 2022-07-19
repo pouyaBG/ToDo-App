@@ -119,10 +119,9 @@ const MyTodo = () => {
           flexWrap: 'wrap',
           width: '100%',
           justifyContent: 'center',
+          marginTop:40,
         }}>
-        <Skeleton animation='wave' />
-        <Skeleton animation='wave' />
-        <Skeleton animation='wave' />
+        <Skeleton animation='wave' variant='rectangular' height={200} sx={{borderRadius:5 , mt:-4}} />
       </div>
     );
   }
@@ -132,6 +131,10 @@ const MyTodo = () => {
       <section className={style.container_todo}>
         {isloading ? (
           <>
+            <LoadingPreview />
+            <LoadingPreview />
+            <LoadingPreview />
+            <LoadingPreview />
             <LoadingPreview />
             <LoadingPreview />
             <LoadingPreview />

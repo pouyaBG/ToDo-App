@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , NavLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -195,15 +195,21 @@ export default function Panel(props) {
                 }}>
                 LOGO
               </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {pages.map((page) => (
+              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className={style.menus} id="menus1" >
+                {/* {pages.map((page) => (
                   <Button
                     key={page}
                     onClick={handelOpenPage}
                     sx={{ my: 2, color: 'white', display: 'block' }}>
                     {page}
                   </Button>
-                ))}
+                ))} */}
+                <NavLink to="./todos"  >
+                  کار های من
+                </NavLink>
+                <NavLink to="./workspase" >
+                  کار تیمی
+                </NavLink>
               </Box>
 
               <Box sx={{ flexGrow: 0 }}>
