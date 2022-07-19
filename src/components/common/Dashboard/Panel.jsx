@@ -22,7 +22,7 @@ import style from './panel.module.scss';
 import { GetUserInfo } from '../../../services/getApi';
 import { Stack } from '@mui/material';
 
-const pages = ['فعالیت', ' میز کار','گزارش گیری'];
+const pages = ['فعالیت', ' میز کار', 'گزارش گیری'];
 const settings = ['پروفایل', 'تنظیمات'];
 
 function HideOnScroll(props) {
@@ -66,8 +66,11 @@ export default function Panel(props) {
   const handelOpenPagePhone = (e) => {
     console.log(e);
     switch (e.target.innerHTML) {
-      case 'فعالیت های من':
+      case 'فعالیت ':
         redirect('/panel/todos');
+        break;
+      case 'میز کار':
+        redirect('/panel/workspase');
         break;
 
       default:
@@ -77,10 +80,10 @@ export default function Panel(props) {
   };
   const handelOpenPage = (e) => {
     switch (e.target.innerText) {
-      case 'فعالیت های من':
+      case 'فعالیت':
         redirect('/panel/todos');
         break;
-      case 'افزودن میز کار':
+      case 'میز کار':
         redirect('/panel/workspase');
         break;
 
@@ -100,7 +103,6 @@ export default function Panel(props) {
     }
     setAnchorElUser(null);
   };
-
 
   React.useEffect(() => {
     GetUserInfo().then((res) => {
@@ -207,7 +209,9 @@ export default function Panel(props) {
 
               <Box sx={{ flexGrow: 0 }}>
                 <div className={style.userName_Box}>
-                  <span className={style.userName} style={{color:"#fff"}}>سلام {userName} عزیز !</span>
+                  <span className={style.userName} style={{ color: '#fff' }}>
+                    سلام {userName} عزیز !
+                  </span>
                   <Tooltip title='تنظیمات'>
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <Stack>
@@ -251,9 +255,7 @@ export default function Panel(props) {
       </HideOnScroll>
       <Toolbar />
       <Container>
-        <Box sx={{ my: 2 }}>
-          {props.children}
-        </Box>
+        <Box sx={{ my: 2 }}>{props.children}</Box>
       </Container>
     </React.Fragment>
   );
