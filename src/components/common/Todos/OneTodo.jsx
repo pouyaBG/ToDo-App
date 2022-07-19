@@ -4,10 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DeleteTodo from '../../../services/deleteApi';
-import {
-  PostComplatedTodo,
-  PostUnComplatedTodo,
-} from '../../../services/updateApi';
+import { PostComplatedTodo } from '../../../services/updateApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
   CircularProgress,
@@ -112,7 +109,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange }) => {
   }
 
   return (
-    <div className={style.box_todo} style={{margin:10}}>
+    <div className={style.box_todo} style={{ margin: 10 }}>
       <Card sx={{ minWidth: 275, maxWidth: 325 }}>
         <CardContent
           sx={{
