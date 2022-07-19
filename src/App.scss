@@ -9,6 +9,9 @@
 
 #menus1 {
     a.active {
-        background: #0004;
+        // background: #fff;
+        border: 2px solid #fff;
+        color: #fff;
+        box-shadow: 0 5px 6px #0003;
     }
 }
