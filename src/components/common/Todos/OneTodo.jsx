@@ -111,6 +111,14 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
     return result;
   }
 
+
+  function handleDelete() {
+    setDeleteState(true)
+    setTimeout(() => {
+      setDeleteState(false)
+    }, 4000);
+  }
+
   return (
     <div className={style.box_todo} style={{ margin: 10 }}>
       <Card sx={{ minWidth: 275, maxWidth: 325 , backgroundColor:"#fff4" , backdropFilter:"blur(16px)" , borderRadius:5 }}>
@@ -156,7 +164,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
             <IconButton size='small' color='error'>
               {!deleteState ? (
                 <Tooltip title='حدف'>
-                  <DeleteIcon onClick={() => setDeleteState(true)} />
+                  <DeleteIcon onClick={handleDelete} />
                 </Tooltip>
               ) : (
                 <Tooltip title='مطمئنید'>
