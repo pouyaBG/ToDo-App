@@ -64,8 +64,7 @@ export default function Panel(props) {
   };
 
   const handelOpenPagePhone = (e) => {
-    console.log(e);
-    switch (e.target.innerHTML) {
+    switch (e.target.innerText) {
       case 'فعالیت ':
         redirect('/panel/todos');
         break;
