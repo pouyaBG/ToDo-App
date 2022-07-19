@@ -177,7 +177,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
                   size='small'
                   color='info'
                   onClick={() => handleTimeStatrt(true)}>
-                  <CheckIcon />
+                  <CheckIcon sx={{ color:"#d35400"}} />
                 </IconButton>
               </Tooltip>
             ) : !completed ? (
@@ -186,7 +186,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
                   size='small'
                   color='info'
                   onClick={() => completedHandler(true)}>
-                  <DoneAllSharpIcon />
+                  <DoneAllSharpIcon sx={{ color:"green"}} />
                 </IconButton>
               </Tooltip>
             ) : (
@@ -195,7 +195,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
                   size='small'
                   color='info'
                   onClick={() => completedHandler(false)}>
-                  <RemoveDoneSharpIcon />
+                  <RemoveDoneSharpIcon sx={{ color:"#d35400"}} />
                 </IconButton>
               </Tooltip>
             )}
