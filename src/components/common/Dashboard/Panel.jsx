@@ -22,7 +22,7 @@ import style from './panel.module.scss';
 import { GetUserInfo } from '../../../services/getApi';
 import { Stack } from '@mui/material';
 
-const pages = ['فعالیت', ' میز کار', 'گزارش گیری'];
+const pages = ['فعالیت', ' میز کار'];
 const settings = ['پروفایل', 'تنظیمات'];
 
 function HideOnScroll(props) {
