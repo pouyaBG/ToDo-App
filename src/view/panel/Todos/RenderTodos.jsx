@@ -68,7 +68,7 @@ const MyTodo = () => {
 
   React.useEffect(() => {
     GetuserTodo().then((res) => {
-      setOpen(false);
+      setOpenModal(false);
       setLoadAddTodo(false);
       setState(res.todos);
     });
