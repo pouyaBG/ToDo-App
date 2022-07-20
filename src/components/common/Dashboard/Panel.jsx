@@ -156,7 +156,7 @@ export default function Panel(props) {
                     horizontal: 'left',
                   }}
                   open={Boolean(anchorElNav)}
-                  onClose={handelCloseMenue}
+                  // onClose={handelCloseMenue}
                   sx={{
                     display: { xs: 'block', md: 'none' },
                   }}>
