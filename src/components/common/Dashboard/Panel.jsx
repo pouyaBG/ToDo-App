@@ -13,7 +13,6 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -22,7 +21,6 @@ import style from './panel.module.scss';
 import { GetUserInfo } from '../../../services/getApi';
 import { Stack } from '@mui/material';
 
-const pages = ['فعالیت', 'کار تیمی'];
 const settings = ['پروفایل', 'تنظیمات'];
 
 function HideOnScroll(props) {
@@ -63,18 +61,7 @@ export default function Panel(props) {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handelOpenPagePhone = (e) => {
-    switch (e.target.innerText) {
-      case 'فعالیت ':
-        redirect('/panel/todos');
-        break;
-      case 'کار تیمی':
-        redirect('/panel/workspase');
-        break;
-
-      default:
-        break;
-    }
+  const handelCloseMenue = () => {
     setAnchorElNav(null);
   };
 
@@ -149,7 +136,7 @@ export default function Panel(props) {
                     horizontal: 'left',
                   }}
                   open={Boolean(anchorElNav)}
-                  onClose={handelOpenPagePhone}
+                  onClose={handelCloseMenue}
                   sx={{
                     display: { xs: 'block', md: 'none' },
                   }}>
@@ -170,7 +157,7 @@ export default function Panel(props) {
                     </MenuItem>
                   </div>
                   {/* {pages.map((page) => (
-                    <MenuItem key={page} onClick={handelOpenPagePhone}>
+                    <MenuItem key={page} onClick={handelCloseMenue}>
                       <Typography textAlign='center' value={page}>
                         {page}
                       </Typography>
