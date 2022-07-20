@@ -34,7 +34,7 @@ export default (router = null) => {
       if (!error.response) {
       } else {
         if (error.response.status === 401) {
-          localStorage.clear();
+          // localStorage.clear();
         }
         if (error.response.status === 403) {
           // alert('403 Forbidden Error')

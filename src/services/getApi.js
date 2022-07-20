@@ -1,5 +1,10 @@
 import Client from '../hooks/useAxios';
 
+export const isLogin = async (roter) => {
+  const response = await Client(roter).get('/islogin');
+  return response.data;
+};
+
 export const GetuserTodo = async (roter) => {
   const response = await Client(roter).get('/user/todos');
   return response.data;
