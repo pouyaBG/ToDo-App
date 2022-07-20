@@ -19,7 +19,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 // style
 import style from './panel.module.scss';
-import { GetUserInfo } from '../../../services/getApi';
+import { GetProfileImg, GetUserInfo } from '../../../services/getApi';
 import { Stack } from '@mui/material';
 
 const pages = ['فعالیت', ' میز کار'];
@@ -54,7 +54,9 @@ export default function Panel(props) {
   const redirect = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [userName, setUserName] = React.useState('');
+  const [userId, setUserId] = React.useState('');
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [ProfileImage, setProfileImage] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -62,6 +64,12 @@ export default function Panel(props) {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
+  React.useEffect(() => {
+    GetProfileImg(userId).then(res => {
+      setProfileImage(res.message[0].base64Image);
+    })
+  }, [])
 
   const handelOpenPagePhone = (e) => {
     switch (e.target.innerText) {
@@ -106,6 +114,7 @@ export default function Panel(props) {
   React.useEffect(() => {
     GetUserInfo().then((res) => {
       setUserName(res.data.fullname);
+      setUserId(res.data.userid);
     });
   }, []);
 
@@ -223,7 +232,7 @@ export default function Panel(props) {
                         <Avatar
                           alt={userName}
                           // !TODO: add src here
-                          src='/static/images/avatar/1.jpg'
+                          src={ProfileImage}
                         />
                       </Stack>
                     </IconButton>

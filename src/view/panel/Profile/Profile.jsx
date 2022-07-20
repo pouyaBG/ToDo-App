@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { GetUserInfo } from '../../../services/getApi';
+import { GetProfileImg, GetUserInfo } from '../../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CreateIcon from '@mui/icons-material/Create';
 import Box from '@mui/material/Box';
@@ -23,7 +23,7 @@ import style from './Profile.module.scss';
 
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { width } from '@mui/system';
-import { postUpload } from '../../../services/postApi'; 
+import { postUpload } from '../../../services/postApi';
 import { toast } from 'react-toastify';
 
 const Profile = () => {
@@ -45,6 +45,8 @@ const Profile = () => {
 
   // modal
   const [open, setOpen] = React.useState(false);
+  const [ProfileImage, setProfileImage] = useState(null);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const styleModal = {
@@ -59,6 +61,12 @@ const Profile = () => {
     p: 3,
     borderRadius: 2,
   };
+
+  // useEffect(() => {
+  //   GetProfileImg().then((res) => {
+  //     // setProfileImage(res.image);
+  //   })
+  // }, [])
 
 
   function getBase64(file) {

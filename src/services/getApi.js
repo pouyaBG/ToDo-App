@@ -1,21 +1,26 @@
 import Client from '../hooks/useAxios';
 
-export const isLogin = async (roter) => {
-  const response = await Client(roter).get('/islogin');
+export const isLogin = async () => {
+  const response = await Client().get('/islogin');
   return response.data;
 };
 
-export const GetuserTodo = async (roter) => {
-  const response = await Client(roter).get('/user/todos');
+export const GetuserTodo = async () => {
+  const response = await Client().get('/user/todos');
   return response.data;
 };
 
-export const GetUserInfo = async (roter) => {
-  const response = await Client(roter).get('/user');
+export const GetUserInfo = async () => {
+  const response = await Client().get('/user');
   return response.data;
 };
 
-export const GetUserWorkspase = async (roter) => {
-  const response = await Client(roter).get('/work/workspase');
+export const GetUserWorkspase = async () => {
+  const response = await Client().get('/work/workspase');
+  return response.data;
+};
+
+export const GetProfileImg = async (id) => {
+  const response = await Client().get('/list/'+ id);
   return response.data;
 };
