@@ -156,13 +156,6 @@ export default function Panel(props) {
                       </Typography>
                     </MenuItem>
                   </div>
-                  {/* {pages.map((page) => (
-                    <MenuItem key={page} onClick={handelCloseMenue}>
-                      <Typography textAlign='center' value={page}>
-                        {page}
-                      </Typography>
-                    </MenuItem>
-                  ))} */}
                 </Menu>
               </Box>
               <ListAltIcon
