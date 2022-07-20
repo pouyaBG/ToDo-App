@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate , NavLink} from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,7 +13,6 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ListAltIcon from '@mui/icons-material/ListAlt';
@@ -22,7 +21,6 @@ import style from './panel.module.scss';
 import { GetProfileImg, GetUserInfo } from '../../../services/getApi';
 import { Stack } from '@mui/material';
 
-const pages = ['فعالیت', ' میز کار'];
 const settings = ['پروفایل', 'تنظیمات'];
 
 function HideOnScroll(props) {
@@ -84,19 +82,6 @@ export default function Panel(props) {
         break;
     }
     setAnchorElNav(null);
-  };
-  const handelOpenPage = (e) => {
-    switch (e.target.innerText) {
-      case 'فعالیت':
-        redirect('/panel/todos');
-        break;
-      case 'میز کار':
-        redirect('/panel/workspase');
-        break;
-
-      default:
-        break;
-    }
   };
 
   const handleCloseUserMenu = (e) => {
@@ -171,17 +156,26 @@ export default function Panel(props) {
                     horizontal: 'left',
                   }}
                   open={Boolean(anchorElNav)}
-                  onClose={handelOpenPagePhone}
+                  onClose={handelCloseMenue}
                   sx={{
                     display: { xs: 'block', md: 'none' },
                   }}>
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={handelOpenPagePhone}>
-                      <Typography textAlign='center' value={page}>
-                        {page}
+                  <div className={style.Box_Menu_main}>
+                    <MenuItem>
+                      <Typography>
+                        <NavLink className={style.Box_Menu} to='./todos'>
+                          کار های من
+                        </NavLink>
                       </Typography>
                     </MenuItem>
-                  ))}
+                    <MenuItem>
+                      <Typography>
+                        <NavLink className={style.Box_Menu} to='./workspase'>
+                          کار تیمی
+                        </NavLink>
+                      </Typography>
+                    </MenuItem>
+                  </div>
                 </Menu>
               </Box>
               <ListAltIcon
@@ -204,21 +198,12 @@ export default function Panel(props) {
                 }}>
                 LOGO
               </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} className={style.menus} id="menus1" >
-                {/* {pages.map((page) => (
-                  <Button
-                    key={page}
-                    onClick={handelOpenPage}
-                    sx={{ my: 2, color: 'white', display: 'block' }}>
-                    {page}
-                  </Button>
-                ))} */}
-                <NavLink to="./todos"  >
-                  کار های من
-                </NavLink>
-                <NavLink to="./workspase" >
-                  کار تیمی
-                </NavLink>
+              <Box
+                sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+                className={style.menus}
+                id='menus1'>
+                <NavLink to='./todos'>کار های من</NavLink>
+                <NavLink to='./workspase'>کار تیمی</NavLink>
               </Box>
 
               <Box sx={{ flexGrow: 0 }}>

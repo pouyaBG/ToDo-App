@@ -14,7 +14,6 @@ import {
   FormControlLabel,
   Skeleton,
   Slide,
-  TextField,
   useScrollTrigger,
 } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -22,7 +21,6 @@ import { PostTodoUser } from '../../../services/postApi';
 import { useNavigate } from 'react-router';
 import OneTodo from '../../../components/common/Todos/OneTodo';
 import Dialog from '@mui/material/Dialog';
-
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -48,7 +46,6 @@ const MyTodo = () => {
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
   const [isPointTime, setIsPointTime] = React.useState(false);
-  const [valueTime, setValueTime] = React.useState(null);
   // modal functions
   const [open, setOpen] = React.useState(false);
 
@@ -119,9 +116,14 @@ const MyTodo = () => {
           flexWrap: 'wrap',
           width: '100%',
           justifyContent: 'center',
-          marginTop:40,
+          marginTop: 40,
         }}>
-        <Skeleton animation='wave' variant='rectangular' height={200} sx={{borderRadius:5 , mt:-4}} />
+        <Skeleton
+          animation='wave'
+          variant='rectangular'
+          height={200}
+          sx={{ borderRadius: 5, mt: -4 }}
+        />
       </div>
     );
   }

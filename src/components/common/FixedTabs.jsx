@@ -10,12 +10,11 @@ function TabPanel(props) {
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
+      {...other}>
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
@@ -48,9 +47,14 @@ export default function BasicTabs({ login, singup }) {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs textColor='sucssess' centered value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="ورود" {...a11yProps(0)} />
-          <Tab label="ثبت نام" {...a11yProps(1)} />
+        <Tabs
+          textColor='sucssess'
+          centered
+          value={value}
+          onChange={handleChange}
+          aria-label='basic tabs example'>
+          <Tab label='ورود' {...a11yProps(0)} />
+          <Tab label='ثبت نام' {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

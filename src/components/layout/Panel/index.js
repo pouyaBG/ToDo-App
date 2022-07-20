@@ -1,33 +1,34 @@
-import React from "react"
+import React from 'react';
 
-import { Route, Routes, useNavigate } from "react-router-dom"
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import NotFound from '../../../view/NotFound/NotFound';
 
 // pages
-import Profile from "../../../view/panel/Profile/Profile";
-import RenderTodos from "../../../view/panel/Todos/RenderTodos";
-import RenderWorkSpase from "../../../view/panel/WorkSpase/RenderWorkSpase";
+import Profile from '../../../view/panel/Profile/Profile';
+import RenderTodos from '../../../view/panel/Todos/RenderTodos';
+import RenderWorkSpase from '../../../view/panel/WorkSpase/RenderWorkSpase';
 
 // layout
-import PanelLayout from "../../common/Dashboard/Panel"
+import PanelLayout from '../../common/Dashboard/Panel';
 
 function Panel() {
-    const redirect = useNavigate();
+  const redirect = useNavigate();
 
-    React.useEffect(() => {
-        if (localStorage.getItem('token') == null) {
-            redirect('/');
-        }
-    }, []);
+  React.useEffect(() => {
+    if (localStorage.getItem('token') == null) {
+      redirect('/');
+    }
+  }, []);
 
-    return (
-        <PanelLayout>
-            <Routes>
-                <Route path="todos" element={<RenderTodos />} />
-                <Route path="workspase" element={<RenderWorkSpase />} />
-                <Route path="profile" element={<Profile />} />
-            </Routes>
-        </PanelLayout>
-    )
+  return (
+    <PanelLayout>
+      <Routes>
+        <Route path='todos' element={<RenderTodos />} />
+        <Route path='workspase' element={<RenderWorkSpase />} />
+        <Route path='profile' element={<Profile />} />
+      </Routes>
+    </PanelLayout>
+  );
 }
 
 export default Panel;

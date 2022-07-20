@@ -4,19 +4,32 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: IRANSans , -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: IRANSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   direction: rtl !important;
   text-align: right !important;
 }
+
 body {
   background: url('./assets/backgroud/159984.webp');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
   image-rendering: pixelated;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgb(119, 119, 119);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(88, 88, 88);
+  }
 }
-

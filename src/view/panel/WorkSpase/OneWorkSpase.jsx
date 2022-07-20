@@ -1,11 +1,9 @@
 import {
   Avatar,
   AvatarGroup,
-  Button,
   Card,
   CardActions,
   CardContent,
-  CardMedia,
   IconButton,
   Tooltip,
   Typography,
