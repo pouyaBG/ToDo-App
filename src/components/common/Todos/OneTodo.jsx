@@ -115,8 +115,12 @@ const OneTodo = ({
     } else if (min < 60) {
       result = Math.floor(min) + 'دقیقه';
     } else if (min > 60) {
-      result = (min / 60) % Math.floor(min / 60) == 0 ? Math.floor(min / 60) + 'ساعت'
-        : Math.floor(min / 60) + 'ساعت و' + Math.floor((60 * ((min / 60) % Math.floor(min / 60))));
+      result =
+        (min / 60) % Math.floor(min / 60) == 0
+          ? Math.floor(min / 60) + 'ساعت'
+          : Math.floor(min / 60) +
+            'ساعت و' +
+            Math.floor(60 * ((min / 60) % Math.floor(min / 60)));
     } else if (min / 60 / 24 > 1) {
       result = Math.floor(min / 60 / 24) + 'روز';
     }
@@ -153,8 +157,9 @@ const OneTodo = ({
         <CardContent
           id={'card' + id}
           sx={{
-            backgroundColor: `${timeStart == null ? '#D7E9F7' : completed ? '#6ECB63' : '#FFB319'
-              }`,
+            backgroundColor: `${
+              timeStart == null ? '#D7E9F7' : completed ? '#6ECB63' : '#FFB319'
+            }`,
           }}
           className={style.body}
           onClick={handleClickOpen}>
@@ -200,7 +205,11 @@ const OneTodo = ({
               )}
             </IconButton>
             <span>
-              {timeStart == null ? "شروع نشده" : timeEnd == null ? 'تکمیل نشده' : getLengthTime(timeEnd, timeStart)}
+              {timeStart == null
+                ? 'شروع نشده'
+                : timeEnd == null
+                ? 'تکمیل نشده'
+                : getLengthTime(timeEnd, timeStart)}
             </span>
             {loadingCompleted ? (
               <CircularProgress size={22} />
@@ -243,7 +252,12 @@ const OneTodo = ({
         <DialogTitle id='alert-dialog-title'>متن کامل فعالیت شما</DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
-            {text}
+            <textarea
+              name=''
+              className={style.todo_description}
+              readOnly={true}>
+              {text}
+            </textarea>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
