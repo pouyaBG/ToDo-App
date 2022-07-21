@@ -57,9 +57,8 @@ const OneTodo = ({
   };
 
   const completedHandler = (completed) => {
-    document.getElementById('card' + id).style.background = completed
-      ? '#00b10c98'
-      : '#FA8856';
+    document.getElementById("card" + id).style.background = 
+    completed ? "#00b10c98" : "#FA8856"
     setLoadingCompleted(true);
     PostComplatedTodo(id, {
       text: text,
@@ -78,7 +77,7 @@ const OneTodo = ({
   };
 
   const handleTimeStatrt = (start) => {
-    document.getElementById('card' + id).style.background = '#FA8856';
+    document.getElementById("card" + id).style.background = "#FA8856"
     setLoadingCompleted(true);
     PostComplatedTodo(id, {
       text: text,
@@ -131,8 +130,8 @@ const OneTodo = ({
   }
 
   return (
-    <div className={`${style.box_todo}`} style={{ margin: 10 }}>
-      <Card
+    <div className={style.box_todo} style={{ margin: 10 }}>
+      <Card 
         sx={{
           minWidth: 275,
           maxWidth: 325,
@@ -151,7 +150,7 @@ const OneTodo = ({
           </Tooltip>
         )}
         <CardContent
-          id={'card' + id}
+        id={"card" + id}
           sx={{
             backgroundColor: `${
               timeStart == null

@@ -6,7 +6,6 @@ import createCache from '@emotion/cache';
 
 // styles
 import './App.scss';
-import 'animate.css';
 
 // pages
 import Auth from './view/Auth';
