@@ -37,6 +37,16 @@
   }
 }
 
+.btn {
+  padding: 15px !important;
+  border-radius: 20px !important;
+  background-color: #b7f397 !important;
+  svg {
+    color: #042100;
+    width: 32px;
+    height: 32px;
+  }
+}
 #alert_dialog_title {
   font-size: 17px;
   transition: all 0.3s;

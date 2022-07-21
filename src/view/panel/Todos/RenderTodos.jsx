@@ -1,7 +1,7 @@
 import * as React from 'react';
 import style from './style.module.scss';
 import { toast } from 'react-toastify';
-import AddIcon from '@mui/icons-material/Add';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { GetuserTodo } from '../../../services/getApi';
@@ -12,6 +12,7 @@ import {
   DialogContent,
   DialogTitle,
   FormControlLabel,
+  IconButton,
   Skeleton,
   Slide,
   useScrollTrigger,
@@ -245,10 +246,9 @@ const MyTodo = () => {
             className={style.button_addTodo}>
             <Button
               variant='contained'
-              endIcon={<AddIcon />}
               className={style.btn}
               onClick={() => setOpenModal(true)}>
-              افزدون فعالیت
+              <EditOutlinedIcon />
             </Button>
           </Stack>
         </HideOnScroll>
