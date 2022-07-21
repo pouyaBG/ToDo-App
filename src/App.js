@@ -21,9 +21,7 @@ function App() {
 
   React.useEffect(() => {
     isLogin()
-      .then(() => {
-        console.log('user is login');
-      })
+      .then(() => {})
       .catch((err) => {
         if (err.response.status == 401) {
           console.log('user not login');

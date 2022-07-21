@@ -53,7 +53,6 @@ const RenderWorkSpase = () => {
     setIsLoading(true);
     GetUserWorkspase().then((res) => {
       setState(res.workspase);
-      console.log(res.workspase);
       setIsLoading(false);
     });
   }, []);
@@ -120,8 +119,9 @@ const RenderWorkSpase = () => {
               autoFocus
               color='primary'
               id='standard-basic'
+              type='color'
               margin='dense'
-              label='کد رنگ'
+              label=' رنگ میزکار'
               sx={{ marginTop: 2 }}
               placeholder='زنگ میزکار خود را انتخاب کنید'
               fullWidth
