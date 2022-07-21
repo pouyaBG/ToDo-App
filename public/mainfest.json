@@ -3,7 +3,7 @@
   "short_name": "TDA",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait-primary",
   "scope": "/",
   "start_url": "/",
