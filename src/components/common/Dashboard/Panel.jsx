@@ -64,23 +64,12 @@ export default function Panel(props) {
   };
 
   React.useEffect(() => {
-    GetProfileImg(userId).then(res => {
+    GetProfileImg(userId).then((res) => {
       setProfileImage(res.message[0].base64Image);
-    })
-  }, [])
+    });
+  }, []);
 
-  const handelOpenPagePhone = (e) => {
-    switch (e.target.innerText) {
-      case 'فعالیت ':
-        redirect('/panel/todos');
-        break;
-      case 'میز کار':
-        redirect('/panel/workspase');
-        break;
-
-      default:
-        break;
-    }
+  const handelCloseMenue = (e) => {
     setAnchorElNav(null);
   };
 
@@ -112,7 +101,7 @@ export default function Panel(props) {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar position='fixed' id='nav' sx={{ background:"#1E212D"}}>
+        <AppBar position='fixed' id='nav' sx={{ background: '#1E212D' }}>
           <Container maxWidth='xl'>
             <Toolbar disableGutters>
               <ListAltIcon
@@ -156,7 +145,7 @@ export default function Panel(props) {
                     horizontal: 'left',
                   }}
                   open={Boolean(anchorElNav)}
-                  // onClose={handelCloseMenue}
+                  onClose={handelCloseMenue}
                   sx={{
                     display: { xs: 'block', md: 'none' },
                   }}>
