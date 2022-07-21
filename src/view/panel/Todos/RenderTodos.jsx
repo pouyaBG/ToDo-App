@@ -257,4 +257,4 @@ const MyTodo = () => {
   );
 };
 
-export default React.memo(MyTodo);
+export default MyTodo;
