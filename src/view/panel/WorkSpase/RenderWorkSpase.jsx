@@ -41,6 +41,12 @@ const RenderWorkSpase = () => {
   const [state, setState] = useState(null);
   const [isloading, setIsLoading] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
+  const [value, setValue] = React.useState({
+    userCreate_id: 0,
+    userCreate_name: '',
+    name: '',
+    color: '',
+  });
   const [change, setChange] = React.useState(new Date());
 
   const redirect = useNavigate();
@@ -114,6 +120,7 @@ const RenderWorkSpase = () => {
               placeholder='اسم میزکار خود را وارد کنید'
               fullWidth
               variant='standard'
+              name='workspasename'
             />
             <TextField
               autoFocus
@@ -126,6 +133,7 @@ const RenderWorkSpase = () => {
               placeholder='زنگ میزکار خود را انتخاب کنید'
               fullWidth
               variant='standard'
+              name='colorcode'
             />
           </DialogContent>
           <DialogActions>

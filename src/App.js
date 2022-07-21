@@ -1,9 +1,12 @@
 import React from 'react';
-import './App.scss';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+
+// styles
+import './App.scss';
+import 'animate.css';
 
 // pages
 import Auth from './view/Auth';

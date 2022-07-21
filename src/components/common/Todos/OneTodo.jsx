@@ -34,7 +34,15 @@ const options = {
   second: 'numeric',
 };
 
-const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime }) => {
+const OneTodo = ({
+  text,
+  id,
+  completed,
+  timeStart,
+  timeEnd,
+  setChange,
+  pointTime,
+}) => {
   const [deleteState, setDeleteState] = React.useState(false);
   const [loadingCompleted, setLoadingCompleted] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -49,6 +57,9 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
   };
 
   const completedHandler = (completed) => {
+    document.getElementById('card' + id).style.background = completed
+      ? '#00b10c98'
+      : '#FA8856';
     setLoadingCompleted(true);
     PostComplatedTodo(id, {
       text: text,
@@ -67,6 +78,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
   };
 
   const handleTimeStatrt = (start) => {
+    document.getElementById('card' + id).style.background = '#FA8856';
     setLoadingCompleted(true);
     PostComplatedTodo(id, {
       text: text,
@@ -99,7 +111,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
     let min = Delta / 1000 / 60;
 
     if (min < 1) {
-      result = Math.floor((Delta / 1000)) + "ثانیه";
+      result = Math.floor(Delta / 1000) + 'ثانیه';
     } else if (min < 60) {
       result = Math.floor(min) + 'دقیقه';
     } else if (min > 60) {
@@ -111,33 +123,43 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
     return result;
   }
 
-
   function handleDelete() {
-    setDeleteState(true)
+    setDeleteState(true);
     setTimeout(() => {
-      setDeleteState(false)
+      setDeleteState(false);
     }, 4000);
   }
 
   return (
-    <div className={style.box_todo} style={{ margin: 10 }}>
-      <Card sx={{ minWidth: 275, maxWidth: 325 , backgroundColor:"#fff4" , backdropFilter:"blur(16px)" , borderRadius:5 }}>
-        {
-          pointTime == null ? "" :
-          <Tooltip title="زمان هدف">
+    <div className={`${style.box_todo}`} style={{ margin: 10 }}>
+      <Card
+        sx={{
+          minWidth: 275,
+          maxWidth: 325,
+          backgroundColor: '#fff4',
+          backdropFilter: 'blur(16px)',
+          borderRadius: 5,
+        }}>
+        {pointTime == null ? (
+          ''
+        ) : (
+          <Tooltip title='زمان هدف'>
             <span className={style.timeaccest}>
-              <p>{pointTime}</p><AccessTimeIcon />
+              <p>{pointTime}</p>
+              <AccessTimeIcon />
             </span>
           </Tooltip>
-        }
+        )}
         <CardContent
+          id={'card' + id}
           sx={{
-            backgroundColor: `${timeStart == null
-              ? '#1d8eff94'
-              : completed
+            backgroundColor: `${
+              timeStart == null
+                ? '#1d8eff94'
+                : completed
                 ? '#00b10c98'
                 : '#FA8856'
-              }`,
+            }`,
           }}
           className={style.body}
           onClick={handleClickOpen}>
@@ -187,7 +209,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
                   size='small'
                   color='info'
                   onClick={() => handleTimeStatrt(true)}>
-                  <CheckIcon sx={{ color:"#d35400"}} />
+                  <CheckIcon sx={{ color: '#d35400' }} />
                 </IconButton>
               </Tooltip>
             ) : !completed ? (
@@ -196,7 +218,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
                   size='small'
                   color='info'
                   onClick={() => completedHandler(true)}>
-                  <DoneAllSharpIcon sx={{ color:"green"}} />
+                  <DoneAllSharpIcon sx={{ color: 'green' }} />
                 </IconButton>
               </Tooltip>
             ) : (
@@ -205,7 +227,7 @@ const OneTodo = ({ text, id, completed, timeStart, timeEnd, setChange, pointTime
                   size='small'
                   color='info'
                   onClick={() => completedHandler(false)}>
-                  <RemoveDoneSharpIcon sx={{ color:"#d35400"}} />
+                  <RemoveDoneSharpIcon sx={{ color: '#d35400' }} />
                 </IconButton>
               </Tooltip>
             )}

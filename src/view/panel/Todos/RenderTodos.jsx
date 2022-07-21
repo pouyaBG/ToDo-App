@@ -222,6 +222,7 @@ const MyTodo = () => {
             <Button
               size='small'
               color='primary'
+              disabled={loadAddTodo}
               onClick={addTodoHandler}
               setChange={setChange}>
               {!loadAddTodo ? (
