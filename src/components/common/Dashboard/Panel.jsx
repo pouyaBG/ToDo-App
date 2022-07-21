@@ -112,7 +112,7 @@ export default function Panel(props) {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar position='fixed'>
+        <AppBar position='fixed' id='nav' sx={{ background:"#1E212D"}}>
           <Container maxWidth='xl'>
             <Toolbar disableGutters>
               <ListAltIcon

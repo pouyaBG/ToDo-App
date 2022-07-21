@@ -55,18 +55,15 @@ export default function SingUp() {
       });
       document.querySelector('input[name="username"]').focus();
       handleClick();
-    } 
-    else if (value.email === '') {
+    } else if (value.email === '') {
       setAlert({ ...alert, severity: 'error', msg: 'ایمیل خود را وارد کنید' });
       document.querySelector('input[name="email"]').focus();
       handleClick();
-    } 
-    else if (value.fullname === '') {
+    } else if (value.fullname === '') {
       setAlert({ ...alert, severity: 'error', msg: 'نام خود را وارد کنید' });
       document.querySelector('input[name="fullname"]').focus();
       handleClick();
-    } 
-    else if (!validEmail(value.email)) {
+    } else if (!validEmail(value.email)) {
       setAlert({ ...alert, severity: 'error', msg: 'ایمیل اشتباه است!' });
       document.querySelector('input[name="email"]').focus();
       handleClick();
@@ -120,20 +117,19 @@ export default function SingUp() {
           id='standard-basic'
           margin='dense'
           name='fullname'
-          label='نام کامل'
-          placeholder='نام خودتو بنویس'
+          label='نام کامل شما'
+          placeholder='نام  و نام خانوادگی خود را وارد کنید'
           fullWidth
           variant='standard'
         />
         <TextField
-          autoFocus
           onChange={getValueInput}
           color='success'
           id='standard-basic'
           margin='dense'
           name='username'
           label='نام کاربری'
-          placeholder='نام کاربری خودتو بنویس'
+          placeholder='یک نام کاربری برای خود انتخاب کنید'
           fullWidth
           variant='standard'
         />
@@ -144,7 +140,7 @@ export default function SingUp() {
           margin='dense'
           name='email'
           label='ایمیل'
-          placeholder='ایمیل خودتو بنویس'
+          placeholder='ایمیل خود را وارد کنید'
           fullWidth
           variant='standard'
         />
@@ -153,6 +149,7 @@ export default function SingUp() {
           color='success'
           id='standard-basic'
           margin='dense'
+          type={'password'}
           name='password'
           label='رمز عبور'
           placeholder='رمز عبور خود را وارد کنید'
@@ -165,7 +162,8 @@ export default function SingUp() {
           margin='dense'
           name='password2'
           label='تکرار کلمه عبور'
-          placeholder='رمز عبور خود را وارد کنید'
+          type={'password'}
+          placeholder='رمز عبوری را که در بالا انتخاب کردید مجدد بنویسید'
           fullWidth
           variant='standard'
         />
@@ -181,9 +179,6 @@ export default function SingUp() {
         </Button>
       </div>
       <Stack spacing={2} sx={{ width: '100%' }}>
-        {/* <Button variant="outlined" onClick={handleClick}>
-                    Open success snackbar
-                </Button> */}
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert
             onClose={handleClose}
@@ -192,10 +187,6 @@ export default function SingUp() {
             {alert.msg}
           </Alert>
         </Snackbar>
-        {/* <Alert severity="error">This is an error message!</Alert>
-                <Alert severity="warning">This is a warning message!</Alert>
-                <Alert severity="info">This is an information message!</Alert>
-                <Alert severity="success">This is a success message!</Alert> */}
       </Stack>
     </>
   );

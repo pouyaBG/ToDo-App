@@ -57,8 +57,9 @@ const OneTodo = ({
   };
 
   const completedHandler = (completed) => {
-    document.getElementById("card" + id).style.background = 
-    completed ? "#00b10c98" : "#FA8856"
+    document.getElementById('card' + id).style.background = completed
+      ? '#6ECB63'
+      : '#FFB319';
     setLoadingCompleted(true);
     PostComplatedTodo(id, {
       text: text,
@@ -77,7 +78,7 @@ const OneTodo = ({
   };
 
   const handleTimeStatrt = (start) => {
-    document.getElementById("card" + id).style.background = "#FA8856"
+    document.getElementById('card' + id).style.background = '#FFB319';
     setLoadingCompleted(true);
     PostComplatedTodo(id, {
       text: text,
@@ -131,12 +132,11 @@ const OneTodo = ({
 
   return (
     <div className={style.box_todo} style={{ margin: 10 }}>
-      <Card 
+      <Card
         sx={{
           minWidth: 275,
           maxWidth: 325,
-          backgroundColor: '#fff4',
-          backdropFilter: 'blur(16px)',
+          backgroundColor: '#fff',
           borderRadius: 5,
         }}>
         {pointTime == null ? (
@@ -150,19 +150,21 @@ const OneTodo = ({
           </Tooltip>
         )}
         <CardContent
-        id={"card" + id}
+          id={'card' + id}
           sx={{
             backgroundColor: `${
-              timeStart == null
-                ? '#1d8eff94'
-                : completed
-                ? '#00b10c98'
-                : '#FA8856'
+              timeStart == null ? '#D7E9F7' : completed ? '#6ECB63' : '#FFB319'
             }`,
           }}
           className={style.body}
           onClick={handleClickOpen}>
-          <Typography variant='body1' className={style.text_body}>
+          <Typography
+            variant='body1'
+            className={style.text_body}
+            sx={{
+              textDecoration: timeEnd == null ? 'none' : 'line-through',
+              color: timeEnd == null ? 'none' : 'rgba(0, 0, 0, 0.5)',
+            }}>
             {text}
           </Typography>
 
@@ -198,7 +200,7 @@ const OneTodo = ({
               )}
             </IconButton>
             <span>
-              {timeEnd == null ? '' : getLengthTime(timeEnd, timeStart)}
+              {timeStart == null ? "شروع نشده" : timeEnd == null ? 'تکمیل نشده' : getLengthTime(timeEnd, timeStart)}
             </span>
             {loadingCompleted ? (
               <CircularProgress size={22} />

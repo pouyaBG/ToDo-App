@@ -78,7 +78,6 @@ export default function Loing() {
         });
     }
   }
-
   return (
     <>
       <div className={style.box_form}>
@@ -90,7 +89,7 @@ export default function Loing() {
           margin='dense'
           name='email'
           label='ایمیل'
-          placeholder='ایمیل خودتو بنویس'
+          placeholder='ایمیل خودتو را وارد کنید'
           fullWidth
           variant='standard'
         />
@@ -99,6 +98,7 @@ export default function Loing() {
           color='success'
           id='standard-basic'
           margin='dense'
+          type={'password'}
           name='password'
           label='رمز عبور'
           placeholder='رمز عبور خود را وارد کنید'
@@ -117,9 +117,6 @@ export default function Loing() {
         </Button>
       </div>
       <Stack spacing={2} sx={{ width: '100%' }}>
-        {/* <Button variant="outlined" onClick={handleClick}>
-                    Open success snackbar
-                </Button> */}
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert
             onClose={handleClose}

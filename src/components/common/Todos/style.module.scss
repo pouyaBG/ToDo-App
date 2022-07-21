@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: baseline;
   align-items: center;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 
   .container_data {
     display: flex;
@@ -103,18 +103,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-
-.body {
-  margin: 10px;
-  cursor: pointer;
-  transition: all 0.5s;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 8px;
-  }
 }
 
 .card_actions {
