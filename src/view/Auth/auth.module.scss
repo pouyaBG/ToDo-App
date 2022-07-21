@@ -1,7 +1,15 @@
 .layout {
-  background: #ECE9E6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffffff,
+    #ece9e6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #ece9e6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 100%;
   width: 100%;
   display: flex;
@@ -11,7 +19,8 @@
 
 .box_auth {
   width: 400px;
-  height: 500px;
+  height: 100vh;
+  // height: 500px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 10px 20px #0003;
@@ -54,5 +63,10 @@
       background: #6297db;
       opacity: 0.9;
     }
+  }
+}
+@media screen and (min-width: 401px) {
+  .box_auth {
+    height: 500px;
   }
 }
