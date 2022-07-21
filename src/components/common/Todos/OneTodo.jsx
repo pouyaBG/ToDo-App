@@ -190,7 +190,7 @@ const OneTodo = ({
                   <DeleteIcon onClick={handleDelete} />
                 </Tooltip>
               ) : (
-                <Tooltip title='مطمئنید'>
+                <Tooltip title='مطمئن هستید'>
                   {!isLoading ? (
                     <GppMaybeRoundedIcon onClick={deleteHandler} />
                   ) : (

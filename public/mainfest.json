@@ -44,7 +44,7 @@
       "type": "image/png"
     },
     {
-      "src": "images/icons/icon-512x512.png",
+      "src": "./favicon.ico",
       "sizes": "512x512",
       "type": "image/png"
     }

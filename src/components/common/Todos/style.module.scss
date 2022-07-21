@@ -25,15 +25,6 @@
   justify-content: baseline;
   align-items: center;
   transition: all 0.3s;
-
-  .container_data {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-self: center;
-    align-items: center;
-    cursor: pointer;
-  }
 }
 
 .container_todo {
@@ -58,25 +49,6 @@
 #alert_dialog_title {
   font-size: 17px;
   transition: all 0.3s;
-}
-
-.todo_description {
-  margin-top: 1px;
-  height: 150px;
-  width: 200px;
-  max-width: 500px;
-  resize: none;
-  padding: 4px 6px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  transition: all 0.3s;
-
-  &:active,
-  &:focus-visible {
-    outline: none;
-    border: 2px solid rgb(29, 134, 231);
-  }
 }
 
 .error_null {
@@ -112,15 +84,6 @@
   align-items: center;
   padding: 0px;
   margin: 0px;
-}
-
-.btn {
-  background-image: linear-gradient(
-    -425deg,
-    #77ffd2 0%,
-    #6297db 20%,
-    #1eecff 100%
-  );
 }
 
 // responsive
