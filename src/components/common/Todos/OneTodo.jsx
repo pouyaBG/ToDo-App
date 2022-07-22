@@ -173,20 +173,24 @@ const OneTodo = ({
             }}>
             {text}
           </Typography>
-
-          <Typography variant='body2' component='div' marginTop={2}>
-            شروع:
-            <br></br>
-            {timeStart == null
-              ? 'شروع نشده است'
-              : new Date(timeStart).toLocaleString('fa-IR', options)}
-          </Typography>
-          <Typography variant='body2' component='div' marginTop={2}>
-            <p>پایان:</p>
-            {completed
-              ? new Date(timeEnd).toLocaleString('fa-IR', options)
-              : '  به پایان نرسیده است'}
-          </Typography>
+          <div className={style.boder}>
+            
+          </div>
+          <div>
+            <Typography variant='body2' component='div' marginTop={2}>
+              شروع:
+              <br></br>
+              {timeStart == null
+                ? 'شروع نشده است'
+                : new Date(timeStart).toLocaleString('fa-IR', options)}
+            </Typography>
+            <Typography variant='body2' component='div' marginTop={2}>
+              <p>پایان:</p>
+              {completed
+                ? new Date(timeEnd).toLocaleString('fa-IR', options)
+                : '  به پایان نرسیده است'}
+            </Typography>
+          </div>
         </CardContent>
         <CardActions>
           <div className={style.card_actions}>
