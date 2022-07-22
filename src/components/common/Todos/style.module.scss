@@ -48,7 +48,7 @@
 }
 .todo_description {
   margin-top: 1px;
-  height: 170px;
+  height: 150px;
   width: 200px;
   max-width: 500px;
   resize: none;
@@ -107,6 +107,10 @@
 @media (min-width: 600px) {
   .container_todo {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .todo_description {
+    height: 170px;
+    width: 300px;
   }
 }
 

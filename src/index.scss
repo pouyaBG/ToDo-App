@@ -14,24 +14,29 @@
 }
 
 body {
-  background: #ECE9E6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  image-rendering: pixelated;
+  background: #ece9e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffffff,
+    #ece9e6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #ece9e6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 11px;
   }
   &::-webkit-scrollbar-track {
-    background: #ffffff;
+    background: rgb(255, 255, 255);
   }
   &::-webkit-scrollbar-thumb {
-    background: rgb(119, 119, 119);
-    border-radius: 10px;
+    background: rgb(90, 90, 90);
+    width: 100%;
+    border-radius: 100px;
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: rgb(88, 88, 88);
+    background: rgb(133, 133, 133);
   }
 }
