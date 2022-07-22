@@ -3,6 +3,9 @@
   margin-left: 12px;
   color: rgb(41, 41, 41);
   transition: all 0.3s;
+  padding: 5px;
+  border-bottom: 2px solid white;
+  border-radius: 5px;
   text-transform: uppercase;
 }
 .userName_Box {
@@ -39,4 +42,3 @@
     display: flex;
   }
 }
-

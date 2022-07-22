@@ -144,7 +144,9 @@ const MyTodo = () => {
             <LoadingPreview />
           </>
         ) : state == null ? (
-          'nothing todo'
+          <>
+            <p>nothing</p>
+          </>
         ) : (
           state.map((items) => (
             <OneTodo

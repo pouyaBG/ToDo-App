@@ -155,43 +155,47 @@ const OneTodo = ({
             </span>
           </Tooltip>
         )}
-        <CardContent
-          id={'card' + id}
-          sx={{
-            backgroundColor: `${
-              timeStart == null ? '#D7E9F7' : completed ? '#6ECB63' : '#FFB319'
-            }`,
-          }}
-          className={style.body}
-          onClick={handleClickOpen}>
-          <Typography
-            variant='body1'
-            className={style.text_body}
+        <Tooltip title='برای دیدن متن کامل کلیک کنید' placement='left'>
+          <CardContent
+            id={'card' + id}
             sx={{
-              textDecoration: timeEnd == null ? 'none' : 'line-through',
-              color: timeEnd == null ? 'none' : 'rgba(0, 0, 0, 0.5)',
-            }}>
-            {text}
-          </Typography>
-          <div className={style.boder}>
-            
-          </div>
-          <div>
-            <Typography variant='body2' component='div' marginTop={2}>
-              شروع:
-              <br></br>
-              {timeStart == null
-                ? 'شروع نشده است'
-                : new Date(timeStart).toLocaleString('fa-IR', options)}
+              backgroundColor: `${
+                timeStart == null
+                  ? '#D7E9F7'
+                  : completed
+                  ? '#6ECB63'
+                  : '#FFB319'
+              }`,
+            }}
+            className={style.body}
+            onClick={handleClickOpen}>
+            <Typography
+              variant='body1'
+              className={style.text_body}
+              sx={{
+                textDecoration: timeEnd == null ? 'none' : 'line-through',
+                color: timeEnd == null ? 'none' : 'rgba(0, 0, 0, 0.5)',
+              }}>
+              {text}
             </Typography>
-            <Typography variant='body2' component='div' marginTop={2}>
-              <p>پایان:</p>
-              {completed
-                ? new Date(timeEnd).toLocaleString('fa-IR', options)
-                : '  به پایان نرسیده است'}
-            </Typography>
-          </div>
-        </CardContent>
+            <div className={style.boder}></div>
+            <div>
+              <Typography variant='body2' component='div' marginTop={2}>
+                شروع:
+                <br></br>
+                {timeStart == null
+                  ? 'شروع نشده است'
+                  : new Date(timeStart).toLocaleString('fa-IR', options)}
+              </Typography>
+              <Typography variant='body2' component='div' marginTop={2}>
+                <p>پایان:</p>
+                {completed
+                  ? new Date(timeEnd).toLocaleString('fa-IR', options)
+                  : '  به پایان نرسیده است'}
+              </Typography>
+            </div>
+          </CardContent>
+        </Tooltip>
         <CardActions>
           <div className={style.card_actions}>
             <IconButton size='small' color='error'>
