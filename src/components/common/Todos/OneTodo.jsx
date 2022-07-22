@@ -111,18 +111,18 @@ const OneTodo = ({
     let min = Delta / 1000 / 60;
 
     if (min < 1) {
-      result = Math.floor(Delta / 1000) + 'ثانیه';
+      result = Math.floor(Delta / 1000) + '  ثانیه ';
     } else if (min < 60) {
-      result = Math.floor(min) + 'دقیقه';
+      result = Math.floor(min) + ' دقیقه';
     } else if (min > 60) {
       result =
         (min / 60) % Math.floor(min / 60) == 0
-          ? Math.floor(min / 60) + 'ساعت'
+          ? Math.floor(min / 60) + ' ساعت'
           : Math.floor(min / 60) +
-            'ساعت و' +
+            ' ساعت و' +
             Math.floor(60 * ((min / 60) % Math.floor(min / 60)));
     } else if (min / 60 / 24 > 1) {
-      result = Math.floor(min / 60 / 24) + 'روز';
+      result = Math.floor(min / 60 / 24) + ' روز';
     }
 
     return result;
@@ -136,8 +136,9 @@ const OneTodo = ({
   }
 
   return (
-    <div className={style.box_todo} style={{ margin: 10 }}>
+    <>
       <Card
+        className={style.box_todo}
         sx={{
           minWidth: 275,
           maxWidth: 325,
@@ -204,7 +205,7 @@ const OneTodo = ({
                 </Tooltip>
               )}
             </IconButton>
-            <span>
+            <span className={style.TimeSpan}>
               {timeStart == null
                 ? 'شروع نشده'
                 : timeEnd == null
@@ -268,7 +269,7 @@ const OneTodo = ({
           </Tooltip>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 };
 
