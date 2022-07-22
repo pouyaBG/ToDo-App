@@ -7,25 +7,19 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
-  Modal,
   Stack,
   TextField,
   Tooltip,
-  Typography,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { GetProfileImg, GetUserInfo } from '../../../services/getApi';
+import { GetUserInfo } from '../../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CreateIcon from '@mui/icons-material/Create';
-import Box from '@mui/material/Box';
-import Backdrop from '@mui/material/Backdrop';
-import style from './Profile.module.scss';
-
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { width } from '@mui/system';
 import { postUpload } from '../../../services/postApi';
 import { toast } from 'react-toastify';
 
+import style from '../../../view/style/Profile.module.scss';
 const Profile = () => {
   const [UserInfo, setUserInfo] = useState({
     name: '',
@@ -38,7 +32,7 @@ const Profile = () => {
         name: res.data.fullname,
         email: res.data.email,
         // imageUser: res.data.avatar,
-        userid: res.data.userid
+        userid: res.data.userid,
       });
     });
   }, []);
@@ -68,7 +62,6 @@ const Profile = () => {
   //   })
   // }, [])
 
-
   function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -86,10 +79,10 @@ const Profile = () => {
     reader.onload = function () {
       // console.log(reader.result);
       postUpload({
-        base64Image: reader.result
-      }).then(res => {
-        toast.success(res.message)
-      })
+        base64Image: reader.result,
+      }).then((res) => {
+        toast.success(res.message);
+      });
     };
   }
 

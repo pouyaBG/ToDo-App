@@ -1,5 +1,4 @@
 import * as React from 'react';
-import style from './style.module.scss';
 import { toast } from 'react-toastify';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Stack from '@mui/material/Stack';
@@ -22,6 +21,7 @@ import { PostTodoUser } from '../../../services/postApi';
 import { useNavigate } from 'react-router';
 import OneTodo from '../../../components/common/Todos/OneTodo';
 import Dialog from '@mui/material/Dialog';
+import style from '../../../view/style/renderTodo.module.scss';
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({

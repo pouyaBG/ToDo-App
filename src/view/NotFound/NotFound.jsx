@@ -1,4 +1,4 @@
-import style from './NotFound.module.scss';
+import style from '../style/NotFound.module.scss';
 
 const NotFound = () => {
   return (

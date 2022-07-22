@@ -17,7 +17,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 // style
-import style from './panel.module.scss';
+import style from '../../../view/style/panel.module.scss';
 import { GetProfileImg, GetUserInfo } from '../../../services/getApi';
 import { Stack } from '@mui/material';
 

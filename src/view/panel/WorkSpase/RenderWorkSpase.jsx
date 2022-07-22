@@ -13,11 +13,11 @@ import {
 import * as React from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import PropTypes from 'prop-types';
-import style from './style.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { GetUserWorkspase } from '../../../services/getApi';
 import OneWorkSpase from './OneWorkSpase';
+import style from '../../../view/style/workspase.module.scss';
 
 function HideOnScroll(props) {
   const { children, window } = props;

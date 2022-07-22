@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import style from './style.module.scss';
+import style from '../../../view/style/workspase.module.scss';
 
 const OneWorkSpase = ({ name, color, team_member }) => {
   return (
@@ -30,8 +30,11 @@ const OneWorkSpase = ({ name, color, team_member }) => {
             <div className={style.box_team}>
               <AvatarGroup max={4}>
                 {team_member.map((item) => (
-                  
-                  <Avatar key={item._id} alt={item.username.toUpperCase()} src="?" />
+                  <Avatar
+                    key={item._id}
+                    alt={item.username.toUpperCase()}
+                    src='?'
+                  />
                 ))}
               </AvatarGroup>
               <CardActions>

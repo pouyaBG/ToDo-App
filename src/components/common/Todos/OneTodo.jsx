@@ -20,9 +20,9 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import GppMaybeRoundedIcon from '@mui/icons-material/GppMaybeRounded';
 import DoneAllSharpIcon from '@mui/icons-material/DoneAllSharp';
 import RemoveDoneSharpIcon from '@mui/icons-material/RemoveDoneSharp';
-import style from './style.module.scss';
 import CheckIcon from '@mui/icons-material/Check';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import style from '../../../view/style/oneTodo.module.scss';
 
 // for date
 const options = {
