@@ -1,30 +1,35 @@
 .container_WorkSpase {
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 0px;
+  display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  row-gap: 20px;
   margin-top: 31px;
 
   .box_ws {
     width: 100%;
-    height: 100%;
+    background-color: #fff;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
     margin: 20px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: baseline;
-    align-items: center;
-    transition: all 0.3s ease-in-out;
   }
 }
 .button_addTodo {
   position: fixed;
   bottom: 20px;
-  left: 10px;
+  left: 20px;
+}
+.btn {
+  padding: 15px !important;
+  border-radius: 20px !important;
+  background-color: #b7f397 !important;
+  svg {
+    color: #042100;
+    width: 32px;
+    height: 32px;
+  }
 }
 .loading_skeleton {
   span {
@@ -32,7 +37,11 @@
     height: 250px;
   }
 }
-
+.box_main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .box_team {
   display: flex;
   margin-top: 40px;

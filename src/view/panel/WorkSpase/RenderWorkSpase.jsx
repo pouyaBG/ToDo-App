@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { GetUserWorkspase } from '../../../services/getApi';
 import OneWorkSpase from './OneWorkSpase';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import style from '../../../view/style/workspase.module.scss';
 
 function HideOnScroll(props) {
@@ -108,7 +109,7 @@ const RenderWorkSpase = () => {
           aria-labelledby='alert-dialog-title'
           aria-describedby='alert-dialog-description'>
           <DialogTitle id={style.alert_dialog_title}>
-            متن میزکار خود را وارد کنید !
+            مشخصات میزکار خود را وارد کنید !
           </DialogTitle>
           <DialogContent>
             <TextField
@@ -156,12 +157,9 @@ const RenderWorkSpase = () => {
             className={style.button_addTodo}>
             <Button
               variant='contained'
-              endIcon={<AddIcon />}
               className={style.btn}
-              onClick={() => setOpenModal(true)}
-              // onClick={handleOpen}
-            >
-              افزودن میز کار
+              onClick={() => setOpenModal(true)}>
+              <EditOutlinedIcon />
             </Button>
           </Stack>
         </HideOnScroll>

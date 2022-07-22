@@ -11,7 +11,6 @@ import {
   DialogContent,
   DialogTitle,
   FormControlLabel,
-  IconButton,
   Skeleton,
   Slide,
   useScrollTrigger,
