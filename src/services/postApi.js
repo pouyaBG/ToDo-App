@@ -31,3 +31,8 @@ export async function postUpload(data) {
   });
   return response.data;
 }
+
+export const PostWorkSpase = async (data) => {
+  const response = await Client().post('/work/workspase', data);
+  return response.data;
+};

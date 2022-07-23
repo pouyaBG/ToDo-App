@@ -101,9 +101,6 @@ const MyTodo = () => {
         });
     }
   };
-  const complateHandler = (e) => {
-    // console.log(e);
-  };
 
   const handleClose2 = () => setOpenModal(false);
 
@@ -148,12 +145,7 @@ const MyTodo = () => {
           </>
         ) : (
           state.map((items) => (
-            <OneTodo
-              key={items.id}
-              {...items}
-              onComplate={complateHandler}
-              setChange={setChange}
-            />
+            <OneTodo key={items.id} {...items} setChange={setChange} />
           ))
         )}
         {/* button add todo for show Dialog */}

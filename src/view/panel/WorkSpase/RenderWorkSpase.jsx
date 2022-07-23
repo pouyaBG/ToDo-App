@@ -11,7 +11,6 @@ import {
   useScrollTrigger,
 } from '@mui/material';
 import * as React from 'react';
-import AddIcon from '@mui/icons-material/Add';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -19,6 +18,7 @@ import { GetUserWorkspase } from '../../../services/getApi';
 import OneWorkSpase from '../../../components/pages/WorkSpase/OneWorkSpase';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import style from '../../../view/style/workspase.module.scss';
+import { PostWorkSpase } from '../../../services/postApi';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -64,6 +64,28 @@ const RenderWorkSpase = () => {
       setIsLoading(false);
     });
   }, []);
+  React.useEffect(() => {
+    setIsLoading(true);
+    GetUserWorkspase().then((res) => {
+      setState(res.workspase);
+      setIsLoading(false);
+    });
+  }, [change]);
+
+  const changeInput = (e) => {
+    setValue({ ...value, [e.target.name]: e.target.value });
+    console.log(value);
+  };
+
+  const addWorkSpase = () => {
+    if (value.name === null || value.color === null) {
+      alert('Please select a color for you');
+    } else {
+      PostWorkSpase({
+        value,
+      }).then(() => setChange(new Date()));
+    }
+  };
 
   function LoadingPreview() {
     return (
@@ -99,7 +121,7 @@ const RenderWorkSpase = () => {
             <OneWorkSpase
               key={items.id}
               {...items}
-              // setChange={setChange}
+              setChange={setChange}
             />
           ))
         )}
@@ -122,7 +144,8 @@ const RenderWorkSpase = () => {
               placeholder='اسم میزکار خود را وارد کنید'
               fullWidth
               variant='standard'
-              name='workspasename'
+              name='name'
+              onChange={changeInput}
             />
             <TextField
               autoFocus
@@ -135,15 +158,16 @@ const RenderWorkSpase = () => {
               placeholder='زنگ میزکار خود را انتخاب کنید'
               fullWidth
               variant='standard'
-              name='colorcode'
+              name='color'
+              onChange={changeInput}
             />
           </DialogContent>
           <DialogActions>
             <Button
               size='small'
               color='primary'
-              // onClick={addTodoHandler}
-              // setChange={setChange}
+              onClick={addWorkSpase}
+              setChange={setChange}
             >
               اضافه کردن
             </Button>
