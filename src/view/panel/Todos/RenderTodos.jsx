@@ -18,7 +18,7 @@ import {
 import PropTypes from 'prop-types';
 import { PostTodoUser } from '../../../services/postApi';
 import { useNavigate } from 'react-router';
-import OneTodo from '../../../components/common/Todos/OneTodo';
+import OneTodo from '../../../components/pages/Todos/OneTodo';
 import Dialog from '@mui/material/Dialog';
 import style from '../../../view/style/renderTodo.module.scss';
 function HideOnScroll(props) {

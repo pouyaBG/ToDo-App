@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { GetUserWorkspase } from '../../../services/getApi';
-import OneWorkSpase from '../../../components/common/WorkSpase/OneWorkSpase';
+import OneWorkSpase from '../../../components/pages/WorkSpase/OneWorkSpase';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import style from '../../../view/style/workspase.module.scss';
 

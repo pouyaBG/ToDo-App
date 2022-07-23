@@ -120,7 +120,7 @@ const OneTodo = ({
           ? Math.floor(min / 60) + ' ساعت'
           : Math.floor(min / 60) +
             ' ساعت و' +
-            Math.floor(60 * ((min / 60) % Math.floor(min / 60)));
+            Math.floor(60 * ((min / 60) % Math.floor(min / 60))) + "دقیقه";
     } else if (min / 60 / 24 > 1) {
       result = Math.floor(min / 60 / 24) + ' روز';
     }
