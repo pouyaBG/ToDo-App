@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { GetUserWorkspase } from '../../../services/getApi';
-import OneWorkSpase from './OneWorkSpase';
+import OneWorkSpase from '../../../components/common/WorkSpase/OneWorkSpase';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import style from '../../../view/style/workspase.module.scss';
 
@@ -54,6 +54,7 @@ const RenderWorkSpase = () => {
 
   React.useEffect(() => {
     if (localStorage.getItem('token') === null) {
+      localStorage.removeItem('token');
       redirect('/');
     }
 

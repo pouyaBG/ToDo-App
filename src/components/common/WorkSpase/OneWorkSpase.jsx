@@ -2,7 +2,6 @@ import {
   Avatar,
   AvatarGroup,
   Card,
-  CardActions,
   CardContent,
   IconButton,
   Tooltip,
@@ -22,10 +21,22 @@ const OneWorkSpase = ({ name, color, team_member }) => {
           component='div'
           width='100%'
           height='100%'
-          backgroundColor={'red'}></Typography>
-        <div>s</div>
-        <div>s</div>
-        <div>s</div>
+          backgroundColor={color}></Typography>
+        <CardContent>
+          <Typography>{name}</Typography>
+        </CardContent>
+        <div className={style.avatar}>
+          <AvatarGroup max={4}>
+            {team_member.map((item) => (
+              <Tooltip title={item.username}>
+                <Avatar alt={item.username} src='?' />
+              </Tooltip>
+            ))}
+          </AvatarGroup>
+        </div>
+        <IconButton>
+          <DeleteIcon color='error' />
+        </IconButton>
       </Card>
     </>
   );
