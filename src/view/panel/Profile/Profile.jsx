@@ -21,6 +21,8 @@ import { toast } from 'react-toastify';
 
 import style from '../../../view/style/Profile.module.scss';
 const Profile = () => {
+  const [change , setChange] = useState("");
+
   const [UserInfo, setUserInfo] = useState({
     name: '',
     email: '',
@@ -35,7 +37,7 @@ const Profile = () => {
         userid: res.data.userid,
       });
     });
-  }, []);
+  }, [change]);
 
   // modal
   const [open, setOpen] = React.useState(false);
@@ -78,10 +80,12 @@ const Profile = () => {
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = function () {
       // console.log(reader.result);
-      postUpload({
-        base64Image: reader.result,
+      postUpload(UserInfo.userid,{
+        profile: reader.result,
       }).then((res) => {
         toast.success(res.message);
+        setChange(new Date());
+        window.location.reload();
       });
     };
   }

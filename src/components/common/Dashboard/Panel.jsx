@@ -52,7 +52,7 @@ export default function Panel(props) {
   const redirect = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [userName, setUserName] = React.useState('');
-  const [userId, setUserId] = React.useState('');
+  const [userId, setUserId] = React.useState(0);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [ProfileImage, setProfileImage] = React.useState(null);
 
@@ -65,9 +65,9 @@ export default function Panel(props) {
 
   React.useEffect(() => {
     GetProfileImg(userId).then((res) => {
-      setProfileImage(res.message[0].base64Image);
+      setProfileImage(res.data.base64Image);
     });
-  }, []);
+  }, [userId]);
 
   const handelCloseMenue = (e) => {
     setAnchorElNav(null);
