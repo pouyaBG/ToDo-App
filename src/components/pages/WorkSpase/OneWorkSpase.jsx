@@ -16,11 +16,8 @@ const OneWorkSpase = ({ name, color, team_member }) => {
     <>
       <Card className={style.box_ws}>
         <Typography
-          gutterBottom
-          variant='h5'
+          className={style.box_color}
           component='div'
-          width='100%'
-          height='100%'
           backgroundColor={color}></Typography>
         <CardContent>
           <Typography>{name}</Typography>

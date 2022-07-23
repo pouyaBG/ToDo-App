@@ -7,12 +7,11 @@
   margin-top: 31px;
 
   .box_ws {
-    width: 80%;
     background-color: #fff;
     cursor: pointer;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
     margin: 20px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
       rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -21,6 +20,9 @@
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
     }
   }
+}
+.box_color {
+  width: 20px;
 }
 .button_addTodo {
   position: fixed;
