@@ -10,6 +10,7 @@ import RenderWorkSpase from '../../../view/panel/WorkSpase/RenderWorkSpase';
 
 // layout
 import PanelLayout from '../../common/Dashboard/Panel';
+import Task from '../../pages/Task/Task';
 
 function Panel() {
   const redirect = useNavigate();
@@ -26,6 +27,7 @@ function Panel() {
         <Route path='todos' element={<RenderTodos />} />
         <Route path='workspase' element={<RenderWorkSpase />} />
         <Route path='profile' element={<Profile />} />
+        <Route path='task' element={<Task />} />
       </Routes>
     </PanelLayout>
   );

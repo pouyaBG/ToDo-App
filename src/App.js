@@ -42,6 +42,7 @@ function App() {
             <Route path='todos' />
             <Route path='workspase' />
             <Route path='profile' />
+            <Route path='task' />
           </Route>
         </Routes>
       </div>

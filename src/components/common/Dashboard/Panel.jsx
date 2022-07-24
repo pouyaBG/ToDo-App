@@ -94,7 +94,6 @@ export default function Panel(props) {
 
   const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('token');
     redirect('/');
   };
 
@@ -153,8 +152,8 @@ export default function Panel(props) {
                   <div className={style.Box_Menu_main}>
                     <MenuItem>
                       <Typography>
-                        <NavLink className={style.Box_Menu} to='./todos'>
-                          کار های من
+                        <NavLink className={style.Box_Menu} to='./task'>
+                          فالیت های من
                         </NavLink>
                       </Typography>
                     </MenuItem>
@@ -192,7 +191,7 @@ export default function Panel(props) {
                 sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
                 className={style.menus}
                 id='menus1'>
-                <NavLink to='./todos'>کار های من</NavLink>
+                <NavLink to='./task'> فالیت های من</NavLink>
                 <NavLink to='./workspase'>کار تیمی</NavLink>
               </Box>
 

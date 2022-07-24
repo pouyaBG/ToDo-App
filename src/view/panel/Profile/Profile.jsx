@@ -84,7 +84,6 @@ const Profile = () => {
         <LazyLoadImage
           alt='demonstration1'
           className={style.imagePreview}
-          // dynamic
           src={ProfileImage}
           effect='blur'
         />
