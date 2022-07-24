@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
   Avatar,
   Button,
@@ -11,58 +11,45 @@ import {
   TextField,
   Tooltip,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { GetUserInfo } from '../../../services/getApi';
+import { useState } from 'react';
+import { GetProfileImg, GetUserInfo } from '../../../services/getApi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import CreateIcon from '@mui/icons-material/Create';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import { postUpload } from '../../../services/postApi';
 import { toast } from 'react-toastify';
 
 import style from '../../../view/style/Profile.module.scss';
-const Profile = () => {
-  const [change , setChange] = useState("");
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
+const Profile = () => {
+  const [change, setChange] = useState('');
   const [UserInfo, setUserInfo] = useState({
     name: '',
     email: '',
-    imageUser: '',
+    userId: '',
   });
-  useEffect(() => {
+  const [ProfileImage, setProfileImage] = useState(null);
+
+  React.useEffect(() => {
     GetUserInfo().then((res) => {
       setUserInfo({
         name: res.data.fullname,
         email: res.data.email,
-        // imageUser: res.data.avatar,
-        userid: res.data.userid,
+        userId: res.data.userid,
       });
     });
   }, [change]);
 
+  React.useEffect(() => {
+    GetProfileImg(UserInfo.userId).then((res) => {
+      setProfileImage(res.data.base64Image);
+    });
+  }, [UserInfo.userId]);
+
   // modal
   const [open, setOpen] = React.useState(false);
-  const [ProfileImage, setProfileImage] = useState(null);
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const styleModal = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 500,
-    bgcolor: 'background.paper',
-    border: '1px solid #ccc',
-    boxShadow: 30,
-    p: 3,
-    borderRadius: 2,
-  };
-
-  // useEffect(() => {
-  //   GetProfileImg().then((res) => {
-  //     // setProfileImage(res.image);
-  //   })
-  // }, [])
 
   function getBase64(file) {
     var reader = new FileReader();
@@ -79,8 +66,7 @@ const Profile = () => {
     var reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = function () {
-      // console.log(reader.result);
-      postUpload(UserInfo.userid,{
+      postUpload(UserInfo.userId, {
         profile: reader.result,
       }).then((res) => {
         toast.success(res.message);
@@ -99,13 +85,13 @@ const Profile = () => {
           alt='demonstration1'
           className={style.imagePreview}
           // dynamic
-          src={'http://assets.stickpng.com/images/585e4beacb11b227491c3399.png'}
+          src={ProfileImage}
           effect='blur'
         />
         <div className={style.email}>{UserInfo.email}</div>
         <div className={style.edit}>
           <Tooltip title=' ویرایش'>
-            <IconButton size='small' color='info' onClick={handleOpen}>
+            <IconButton size='small' color='error' onClick={handleOpen}>
               <CreateIcon />
             </IconButton>
           </Tooltip>
@@ -124,7 +110,7 @@ const Profile = () => {
             direction='column'
             spacing={1}
             style={{ display: 'flex', alignItems: 'center' }}>
-            <Avatar alt={UserInfo.name} src={UserInfo.imageUser} />
+            <Avatar alt={UserInfo.name} src={ProfileImage} />
             <Button variant='outlined' component='label' size='small'>
               بارگذاری عکس
               <input type='file' hidden onChange={uploadProfile} />

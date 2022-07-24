@@ -94,6 +94,7 @@ export default function Panel(props) {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('token');
     redirect('/');
   };
 
