@@ -24,6 +24,7 @@ import RemoveDoneSharpIcon from '@mui/icons-material/RemoveDoneSharp';
 import CheckIcon from '@mui/icons-material/Check';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import style from '../../../view/style/oneTodo.module.scss';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 // for date
 const options = {
@@ -51,6 +52,7 @@ const OneTodo = ({
   const [isReadOnly, setIsReadOnly] = React.useState(true);
   const [isLoadingChange, setIsLoadingChange] = React.useState(false);
   const [todoUpdate, setTodoUpdate] = React.useState([{ tododes: '' }]);
+  const [isDisabled, setIsDisabled] = React.useState(true);
 
   const deleteHandler = () => {
     setIsLoading(true);
@@ -102,6 +104,7 @@ const OneTodo = ({
 
   const openEditHandler = () => {
     setIsReadOnly(false);
+    setIsDisabled(false);
   };
 
   const setChangeTodoHandler = (e) => {
@@ -114,6 +117,7 @@ const OneTodo = ({
   const postTodoHandler = () => {
     setIsReadOnly(true);
     setIsLoadingChange(true);
+    setIsDisabled(true);
     PostChangeTodo(id, {
       text: todoUpdate.tododes,
       completed,
@@ -155,7 +159,7 @@ const OneTodo = ({
 
     return result;
   }
-  const handleClose2 = () => {
+  const handleClose = () => {
     setOpen(false);
   };
   function handleDelete() {
@@ -286,7 +290,7 @@ const OneTodo = ({
       {/* edit modal */}
       <Dialog
         open={open}
-        onClose={handleClose2}
+        onClose={handleClose}
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'>
         <DialogTitle id='alert-dialog-title'>متن کامل فعالیت شما</DialogTitle>
@@ -300,16 +304,17 @@ const OneTodo = ({
                 className={style.todo_description}
                 id='textarea'
                 readOnly={isReadOnly}
-                defaultValue={text}
                 name='tododes'
                 onChange={setChangeTodoHandler}
-                onDoubleClick={openEditHandler}></textarea>
+                onDoubleClick={openEditHandler}>
+                {text}
+              </textarea>
             </Tooltip>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Tooltip title='ذخیره'>
-            <Button onClick={postTodoHandler}>
+            <Button onClick={postTodoHandler} disabled={isDisabled}>
               {!isLoadingChange ? (
                 <>ذخیره</>
               ) : (
