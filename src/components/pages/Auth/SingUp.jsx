@@ -173,7 +173,7 @@ export default function SingUp() {
           ) : (
             <>
               لطفا صبر کنید &nbsp;
-              <CircularProgress sx={{ color: '#fff' }} size={22} />
+              <CircularProgress sx={{ color: '#fff' }} size={18} />
             </>
           )}
         </Button>
