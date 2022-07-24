@@ -5,8 +5,8 @@ export const isLogin = async () => {
   return response.data;
 };
 
-export const GetuserTodo = async () => {
-  const response = await Client().get('/user/todos');
+export const GetuserTodo = async (task_id) => {
+  const response = await Client().get(`/user/task/${task_id}`);
   return response.data;
 };
 
@@ -21,6 +21,11 @@ export const GetUserWorkspase = async () => {
 };
 
 export const GetProfileImg = async (id) => {
-  const response = await Client().get('/list/'+ id);
+  const response = await Client().get('/list/' + id);
+  return response.data;
+};
+
+export const GetTask = async () => {
+  const response = await Client().get('/task');
   return response.data;
 };
