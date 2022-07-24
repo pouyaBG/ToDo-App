@@ -9,3 +9,8 @@ export const PostUnComplatedTodo = async (id, data) => {
   const response = await Client().put(`/user/todos/${id}`, data);
   return response.data;
 };
+
+export const PostChangeTodo = async (id, data) => {
+  const response = await Client().put(`/user/todos/${id}`, data);
+  return response.data;
+};

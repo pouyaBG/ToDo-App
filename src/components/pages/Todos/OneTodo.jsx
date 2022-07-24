@@ -4,9 +4,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import DeleteTodo from '../../../services/deleteApi';
-import { PostComplatedTodo } from '../../../services/updateApi';
+import { PostChangeTodo, PostComplatedTodo } from '../../../services/updateApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
+  Button,
   CircularProgress,
   Dialog,
   DialogActions,
@@ -47,6 +48,9 @@ const OneTodo = ({
   const [loadingCompleted, setLoadingCompleted] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [isReadOnly, setIsReadOnly] = React.useState(true);
+  const [isLoadingChange, setIsLoadingChange] = React.useState(false);
+  const [todoUpdate, setTodoUpdate] = React.useState([{ tododes: '' }]);
 
   const deleteHandler = () => {
     setIsLoading(true);
@@ -96,12 +100,35 @@ const OneTodo = ({
       });
   };
 
+  const openEditHandler = () => {
+    setIsReadOnly(false);
+  };
+
+  const setChangeTodoHandler = (e) => {
+    setTodoUpdate({ ...todoUpdate, [e.target.name]: e.target.value });
+  };
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const postTodoHandler = () => {
+    setIsReadOnly(true);
+    setIsLoadingChange(true);
+    PostChangeTodo(id, {
+      text: todoUpdate.tododes,
+      completed,
+      timeStart: timeStart,
+      timeEnd: timeEnd,
+      pointTime,
+    })
+      .then((res) => {
+        setChange(new Date());
+        setOpen(false);
+        setIsLoadingChange(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   function getLengthTime(end, start) {
@@ -120,14 +147,17 @@ const OneTodo = ({
           ? Math.floor(min / 60) + ' ساعت'
           : Math.floor(min / 60) +
             ' ساعت و' +
-            Math.floor(60 * ((min / 60) % Math.floor(min / 60))) + "دقیقه";
+            Math.floor(60 * ((min / 60) % Math.floor(min / 60))) +
+            'دقیقه';
     } else if (min / 60 / 24 > 1) {
       result = Math.floor(min / 60 / 24) + ' روز';
     }
 
     return result;
   }
-
+  const handleClose2 = () => {
+    setOpen(false);
+  };
   function handleDelete() {
     setDeleteState(true);
     setTimeout(() => {
@@ -253,27 +283,42 @@ const OneTodo = ({
           </div>
         </CardActions>
       </Card>
+      {/* edit modal */}
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleClose2}
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'>
         <DialogTitle id='alert-dialog-title'>متن کامل فعالیت شما</DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
-            <textarea
-              name=''
-              className={style.todo_description}
-              readOnly={true}>
-              {text}
-            </textarea>
+            <Tooltip
+              title={
+                isReadOnly ? 'برای ویرایش فعالیت خود دوبار کلیک کنید' : ''
+              }>
+              <textarea
+                className={style.todo_description}
+                id='textarea'
+                readOnly={isReadOnly}
+                defaultValue={text}
+                name='tododes'
+                onChange={setChangeTodoHandler}
+                onDoubleClick={openEditHandler}></textarea>
+            </Tooltip>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Tooltip title='ویرایش'>
-            <IconButton onClick={handleClose} autoFocus>
-              <ModeEditIcon />
-            </IconButton>
+          <Tooltip title='ذخیره'>
+            <Button onClick={postTodoHandler}>
+              {!isLoadingChange ? (
+                <>ذخیره</>
+              ) : (
+                <>
+                  لطفا صبر کنید &nbsp;
+                  <CircularProgress sx={{ color: 'blue' }} size={22} />
+                </>
+              )}
+            </Button>
           </Tooltip>
         </DialogActions>
       </Dialog>

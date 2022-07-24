@@ -118,11 +118,7 @@ const RenderWorkSpase = () => {
           'nothing workSpase'
         ) : (
           state.map((items) => (
-            <OneWorkSpase
-              key={items.id}
-              {...items}
-              setChange={setChange}
-            />
+            <OneWorkSpase key={items.id} {...items} setChange={setChange} />
           ))
         )}
         {/* modal */}
@@ -167,8 +163,7 @@ const RenderWorkSpase = () => {
               size='small'
               color='primary'
               onClick={addWorkSpase}
-              setChange={setChange}
-            >
+              setChange={setChange}>
               اضافه کردن
             </Button>
           </DialogActions>
