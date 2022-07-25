@@ -172,7 +172,7 @@ const OneTodo = ({
     setDeleteState(true);
     setTimeout(() => {
       setDeleteState(false);
-    }, 4000);
+    }, 5000);
   }
 
   return (

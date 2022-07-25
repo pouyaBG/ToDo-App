@@ -53,7 +53,6 @@ const RenderTask = () => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
-
   useEffect(() => {
     GetTask().then((res) => {
       setState(res.data.reverse());
@@ -68,7 +67,7 @@ const RenderTask = () => {
       setOpenModal(false);
     });
   };
-  
+
   return (
     <>
       <section className={style.container_task}>
