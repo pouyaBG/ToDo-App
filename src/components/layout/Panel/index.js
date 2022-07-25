@@ -22,10 +22,10 @@ function Panel() {
   return (
     <PanelLayout>
       <Routes>
-        <Route path='todos' element={<RenderTodos />} />
         <Route path='workspase' element={<RenderWorkSpase />} />
         <Route path='profile' element={<Profile />} />
         <Route path='task' element={<RenderTask />} />
+        <Route path='task/:id' element={<RenderTodos />} />
       </Routes>
     </PanelLayout>
   );

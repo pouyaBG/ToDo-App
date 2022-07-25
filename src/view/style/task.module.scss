@@ -1,3 +1,35 @@
+.container_task {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  margin-top: 31px;
+  .box_task {
+    background-color: #fff;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    width: calc(33.3333% - 40px);
+    height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    }
+  }
+}
+.box_btn {
+  margin-left: 5px;
+}
+.box_color {
+  width: 30px;
+  height: 100%;
+}
 .button_addTodo {
   position: fixed;
   bottom: 20px;
@@ -11,5 +43,34 @@
     color: #042100;
     width: 32px;
     height: 32px;
+  }
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background-color: #b7f397;
+  animation: ani 1.5s ease-in-out !important;
+  opacity: 0.2;
+}
+.sub_progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 5px;
+  width: 50%;
+  background-color: #b7f397;
+  animation: ani 1.5s ease-in-out !important;
+}
+
+@keyframes ani {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 1;
   }
 }

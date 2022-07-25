@@ -5,6 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  CircularProgress,
   Slide,
   Stack,
   TextField,
@@ -16,6 +17,8 @@ import PropTypes from 'prop-types';
 import style from '../../../view/style/task.module.scss';
 import { useEffect } from 'react';
 import { GetTask } from '../../../services/getApi';
+import OneTask from '../../../components/pages/Task/OneTask';
+import { PostTaskTodo } from '../../../services/postApi';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -36,28 +39,47 @@ HideOnScroll.propTypes = {
 };
 
 const RenderTask = () => {
-  const [state, setState] = React.useState('');
+  const [state, setState] = React.useState(null);
   const [openModal, setOpenModal] = React.useState(false);
   const [value, setValue] = React.useState({
-    userCreate_id: 0,
-    userCreate_name: '',
-    name: '',
+    title: '',
     color: '',
   });
+  const [isLoadingTask, setIsLoadingTask] = React.useState(false);
+  const [change, setChange] = React.useState(new Date());
+
   const handleClose = () => setOpenModal(false);
   const changeInput = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
-    console.log(value);
   };
+
+
   useEffect(() => {
     GetTask().then((res) => {
-      console.log(res);
+      setState(res.data.reverse());
     });
-  }, []);
+  }, [change]);
+
+  const addTaskTodo = () => {
+    setIsLoadingTask(true);
+    PostTaskTodo(value).then(() => {
+      setChange(new Date());
+      setIsLoadingTask(false);
+      setOpenModal(false);
+    });
+  };
+  
   return (
     <>
-      <section>
+      <section className={style.container_task}>
         {/* modal */}
+        {/* render task */}
+        {state == null
+          ? 'خالی'
+          : state.map((items) => (
+              <OneTask key={items._id} {...items} setChange={setChange} />
+            ))}
+        {/* end render task */}
         <Dialog
           open={openModal}
           onClose={handleClose}
@@ -72,11 +94,11 @@ const RenderTask = () => {
               color='primary'
               id='standard-basic'
               margin='dense'
-              label='تسک'
-              placeholder='اسم تسک خود را وارد کنید'
+              label='نام کارت'
+              placeholder='نام کارت خود را وارد کنید'
               fullWidth
               variant='standard'
-              name='name'
+              name='title'
               onChange={changeInput}
             />
             <TextField
@@ -85,9 +107,9 @@ const RenderTask = () => {
               id='standard-basic'
               type='color'
               margin='dense'
-              label=' رنگ تسک'
+              label=' رنگ کارت'
               sx={{ marginTop: 2 }}
-              placeholder='رنگ تسک خود را انتخاب کنید'
+              placeholder='رنگ کارت خود را انتخاب کنید'
               fullWidth
               variant='standard'
               name='color'
@@ -98,10 +120,16 @@ const RenderTask = () => {
             <Button
               size='small'
               color='primary'
-              // onClick={addWorkSpase}
-              // setChange={setChange}
-            >
-              اضافه کردن
+              onClick={addTaskTodo}
+              setChange={setChange}>
+              {!isLoadingTask ? (
+                <>اضافه کردن</>
+              ) : (
+                <>
+                  لطفا صبر کنید &nbsp;
+                  <CircularProgress sx={{ color: 'blue' }} size={22} />
+                </>
+              )}{' '}
             </Button>
           </DialogActions>
         </Dialog>

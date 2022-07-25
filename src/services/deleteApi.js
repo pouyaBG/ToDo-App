@@ -1,6 +1,11 @@
 import Client from '../hooks/useAxios';
 
-export default async function DeleteTodo(id) {
+export async function DeleteTodo(id) {
   const response = await Client().delete(`/user/todos/${id}`);
+  return response.data;
+}
+
+export async function DeleteTask(id) {
+  const response = await Client().delete(`/task/0/${id}`);
   return response.data;
 }

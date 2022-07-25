@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -40,6 +41,8 @@ HideOnScroll.propTypes = {
 };
 
 const MyTodo = () => {
+  const params = useParams();
+
   const [state, setState] = React.useState(null);
   const [isloading, setIsLoading] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
@@ -56,7 +59,7 @@ const MyTodo = () => {
       redirect('/');
     }
     setIsLoading(true);
-    GetuserTodo().then((res) => {
+    GetuserTodo(params.id).then((res) => {
       setOpen(false);
       setIsLoading(false);
       setState(res.todos);
@@ -64,7 +67,7 @@ const MyTodo = () => {
   }, []);
 
   React.useEffect(() => {
-    GetuserTodo().then((res) => {
+    GetuserTodo(params.id).then((res) => {
       setOpenModal(false);
       setLoadAddTodo(false);
       setState(res.todos);
@@ -94,12 +97,18 @@ const MyTodo = () => {
         timeStart: null,
         timeEnd: null,
         pointTime: !isPointTime ? null : timePointValue,
+        task_id: params.id,
       })
         .then(() => setChange(new Date()))
         .catch((err) => {
           toast.error(err.response.data.message);
         });
     }
+  };
+
+  const PutProgessTodo = () => {
+    let total = state.length;
+    console.log(total);
   };
 
   const handleClose2 = () => setOpenModal(false);
@@ -145,7 +154,12 @@ const MyTodo = () => {
           </>
         ) : (
           state.map((items) => (
-            <OneTodo key={items.id} {...items} setChange={setChange} />
+            <OneTodo
+              key={items.id}
+              PutProgessTodo={PutProgessTodo}
+              {...items}
+              setChange={setChange}
+            />
           ))
         )}
         {/* button add todo for show Dialog */}

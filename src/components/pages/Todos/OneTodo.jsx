@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import DeleteTodo from '../../../services/deleteApi';
+import { DeleteTodo } from '../../../services/deleteApi';
 import { PostChangeTodo, PostComplatedTodo } from '../../../services/updateApi';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
@@ -17,14 +17,12 @@ import {
   IconButton,
   Tooltip,
 } from '@mui/material';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import GppMaybeRoundedIcon from '@mui/icons-material/GppMaybeRounded';
 import DoneAllSharpIcon from '@mui/icons-material/DoneAllSharp';
 import RemoveDoneSharpIcon from '@mui/icons-material/RemoveDoneSharp';
 import CheckIcon from '@mui/icons-material/Check';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import style from '../../../view/style/oneTodo.module.scss';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 // for date
 const options = {
@@ -44,6 +42,8 @@ const OneTodo = ({
   timeEnd,
   setChange,
   pointTime,
+  task_id,
+  PutProgessTodo
 }) => {
   const [deleteState, setDeleteState] = React.useState(false);
   const [loadingCompleted, setLoadingCompleted] = React.useState(false);
@@ -73,10 +73,12 @@ const OneTodo = ({
       timeStart: timeStart,
       timeEnd: completed ? new Date() : null,
       pointTime,
+      task_id
     })
       .then((res) => {
         setChange(new Date());
         setLoadingCompleted(false);
+        PutProgessTodo()
       })
       .catch((err) => {
         console.log(err);
@@ -92,10 +94,12 @@ const OneTodo = ({
       timeStart: start ? new Date() : null,
       timeEnd: null,
       pointTime,
+      task_id
     })
       .then((res) => {
         setChange(new Date());
         setLoadingCompleted(false);
+        PutProgessTodo()
       })
       .catch((err) => {
         console.log(err);
@@ -124,11 +128,13 @@ const OneTodo = ({
       timeStart: timeStart,
       timeEnd: timeEnd,
       pointTime,
+      task_id
     })
       .then((res) => {
         setChange(new Date());
         setOpen(false);
         setIsLoadingChange(false);
+        PutProgessTodo()
       })
       .catch((err) => {
         console.log(err);

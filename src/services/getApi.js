@@ -6,7 +6,7 @@ export const isLogin = async () => {
 };
 
 export const GetuserTodo = async (task_id) => {
-  const response = await Client().get(`/user/task/${task_id}`);
+  const response = await Client().get(`/user/todos/${task_id}`);
   return response.data;
 };
 

@@ -36,3 +36,13 @@ export const PostWorkSpase = async (data) => {
   const response = await Client().post('/work/workspase', data);
   return response.data;
 };
+
+export const PostTaskTodo = async (data) => {
+  const response = await Client().post('/task/0', data);
+  return response.data;
+};
+
+export const PostTaskWorkSpase = async (data) => {
+  const response = await Client().post('/task/1', data);
+  return response.data;
+};
