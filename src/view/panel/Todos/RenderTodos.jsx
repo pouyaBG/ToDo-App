@@ -50,6 +50,9 @@ const MyTodo = () => {
   const [change, setChange] = React.useState(new Date());
   const [isPointTime, setIsPointTime] = React.useState(false);
 
+  // اینجا رو ببین میخوام بگم بر اساس تغییرات کمپلیت تودو ها این یوزایفکت اجرا بشه
+  let x = state.map((item) => item.completed);
+
   // modal functions
   const [open, setOpen] = React.useState(false);
 
@@ -107,8 +110,6 @@ const MyTodo = () => {
     }
   };
 
-  // اینجا رو ببین میخوام بگم بر اساس تغییرات کمپلیت تودو ها این یوزایفکت اجرا بشه
-  let x = state.map((item) => item.completed);
   // اینجا رو هم نوشتم ولی دوبار اجرا میکنه ................
   React.useEffect(() => {
     if (state === null) {
