@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router';
 import OneTodo from '../../../components/pages/Todos/OneTodo';
 import Dialog from '@mui/material/Dialog';
 import style from '../../../view/style/renderTodo.module.scss';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -249,6 +250,19 @@ const MyTodo = () => {
               <EditOutlinedIcon />
             </Button>
           </Stack>
+        </HideOnScroll>
+        <HideOnScroll>
+          <Link to={'/panel/task'}>
+            <Stack
+              direction='row'
+              spacing={0}
+              position='fixed'
+              className={style.button_return}>
+              <Button variant='contained' className={style.btn}>
+                <KeyboardDoubleArrowLeftIcon />
+              </Button>
+            </Stack>
+          </Link>
         </HideOnScroll>
       </section>
     </>
