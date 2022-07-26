@@ -43,7 +43,6 @@ const OneTodo = ({
   setChange,
   pointTime,
   task_id,
-  PutProgessTodo
 }) => {
   const [deleteState, setDeleteState] = React.useState(false);
   const [loadingCompleted, setLoadingCompleted] = React.useState(false);
@@ -73,12 +72,11 @@ const OneTodo = ({
       timeStart: timeStart,
       timeEnd: completed ? new Date() : null,
       pointTime,
-      task_id
+      task_id,
     })
       .then((res) => {
         setChange(new Date());
         setLoadingCompleted(false);
-        PutProgessTodo()
       })
       .catch((err) => {
         console.log(err);
@@ -94,12 +92,11 @@ const OneTodo = ({
       timeStart: start ? new Date() : null,
       timeEnd: null,
       pointTime,
-      task_id
+      task_id,
     })
       .then((res) => {
         setChange(new Date());
         setLoadingCompleted(false);
-        PutProgessTodo()
       })
       .catch((err) => {
         console.log(err);
@@ -128,13 +125,12 @@ const OneTodo = ({
       timeStart: timeStart,
       timeEnd: timeEnd,
       pointTime,
-      task_id
+      task_id,
     })
       .then((res) => {
         setChange(new Date());
         setOpen(false);
         setIsLoadingChange(false);
-        PutProgessTodo()
       })
       .catch((err) => {
         console.log(err);
