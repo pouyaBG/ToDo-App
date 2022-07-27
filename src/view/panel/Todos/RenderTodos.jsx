@@ -23,6 +23,7 @@ import OneTodo from '../../../components/pages/Todos/OneTodo';
 import Dialog from '@mui/material/Dialog';
 import style from '../../../view/style/renderTodo.module.scss';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import { updateTaskTodos } from '../../../services/updateApi';
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -50,6 +51,7 @@ const MyTodo = () => {
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
   const [isPointTime, setIsPointTime] = React.useState(false);
+  const [trueData, setTrueData] = React.useState([])
 
   // modal functions
   const [open, setOpen] = React.useState(false);
@@ -73,8 +75,30 @@ const MyTodo = () => {
       setOpenModal(false);
       setLoadAddTodo(false);
       setState(res.todos);
+      changeSetProgress();
     });
   }, [change]);
+
+  const changeSetProgress = () => {
+    GetuserTodo(params.id).then((res) => {
+      let newTrue = res.todos.filter(i => i.completed)
+      let newStart = res.todos.filter(i => !i.timeStart)
+      let trueLength = newTrue.length
+      let startLength = newStart.length
+      const total = res.todos.length - startLength
+
+      const progess = (trueLength / total) * 100
+
+      updateTaskTodos(params.id, {
+        title: state.task_title,
+        isForWorksapce: state.isForWorksapce,
+        color: state.color,
+        progess
+
+      }).then(res => { })
+    });
+
+  }
 
   const addTodoHandler = () => {
     const discriptionTodo = document.querySelector('#todo-description');
