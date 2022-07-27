@@ -12,7 +12,6 @@ import {
   DialogContent,
   DialogTitle,
   FormControlLabel,
-  Skeleton,
   Slide,
   Tooltip,
   useScrollTrigger,
@@ -25,6 +24,7 @@ import Dialog from '@mui/material/Dialog';
 import style from '../../../view/style/renderTodo.module.scss';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import { updateTaskTodos } from '../../../services/updateApi';
+import LoadingPage from '../../../components/common/LoadingPage/LoadingPAge';
 function HideOnScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -133,40 +133,12 @@ const MyTodo = () => {
 
   const handleClose2 = () => setOpenModal(false);
 
-  function LoadingPreview() {
-    return (
-      <div
-        className={style.loading_skeleton}
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          width: '100%',
-          justifyContent: 'center',
-          marginTop: 40,
-        }}>
-        <Skeleton
-          animation='wave'
-          variant='rectangular'
-          height={200}
-          sx={{ borderRadius: 5, mt: -4 }}
-        />
-      </div>
-    );
-  }
-
   return (
     <>
       <section className={style.container_todo}>
         {isloading ? (
           <>
-            <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
+            <LoadingPage />
           </>
         ) : state == null ? (
           <>

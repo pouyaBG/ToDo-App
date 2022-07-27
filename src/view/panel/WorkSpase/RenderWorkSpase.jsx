@@ -4,7 +4,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Skeleton,
   Slide,
   Stack,
   TextField,
@@ -19,6 +18,7 @@ import OneWorkSpase from '../../../components/pages/WorkSpase/OneWorkSpase';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import style from '../../../view/style/workspase.module.scss';
 import { PostWorkSpase } from '../../../services/postApi';
+import LoadingPage from '../../../components/common/LoadingPage/LoadingPAge';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -87,21 +87,6 @@ const RenderWorkSpase = () => {
     }
   };
 
-  function LoadingPreview() {
-    return (
-      <div
-        className={style.loading_skeleton}
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          width: '100%',
-          justifyContent: 'center',
-        }}>
-        <Skeleton animation='wave' />
-        <Skeleton animation='wave' />
-      </div>
-    );
-  }
   const handleClose2 = () => setOpenModal(false);
 
   return (
@@ -109,10 +94,7 @@ const RenderWorkSpase = () => {
       <section className={style.container_WorkSpase}>
         {isloading ? (
           <>
-            <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
-            <LoadingPreview />
+            <LoadingPage />
           </>
         ) : state == null ? (
           'nothing workSpase'

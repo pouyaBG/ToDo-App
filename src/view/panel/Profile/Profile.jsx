@@ -20,8 +20,10 @@ import { toast } from 'react-toastify';
 
 import style from '../../../view/style/Profile.module.scss';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import LoadingPage from '../../../components/common/LoadingPage/LoadingPAge';
 
 const Profile = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [change, setChange] = useState('');
   const [UserInfo, setUserInfo] = useState({
     name: '',
@@ -31,12 +33,14 @@ const Profile = () => {
   const [ProfileImage, setProfileImage] = useState(null);
 
   React.useEffect(() => {
+    setIsLoading(true);
     GetUserInfo().then((res) => {
       setUserInfo({
         name: res.data.fullname,
         email: res.data.email,
         userId: res.data.userid,
       });
+      setIsLoading(false);
     });
   }, [change]);
 
@@ -78,24 +82,32 @@ const Profile = () => {
 
   return (
     <>
-      <div className={style.container}>
-        <div className={style.cardColor}></div>
-        <h1 className={style.fullName}>{UserInfo.name}</h1>
-        <LazyLoadImage
-          alt='demonstration1'
-          className={style.imagePreview}
-          src={ProfileImage}
-          effect='blur'
-        />
-        <div className={style.email}>{UserInfo.email}</div>
-        <div className={style.edit}>
-          <Tooltip title=' ویرایش'>
-            <IconButton size='small' color='error' onClick={handleOpen}>
-              <CreateIcon />
-            </IconButton>
-          </Tooltip>
-        </div>
-      </div>
+      {isLoading ? (
+        <>
+          <LoadingPage />
+        </>
+      ) : (
+        <>
+          <div className={style.container}>
+            <div className={style.cardColor}></div>
+            <h1 className={style.fullName}>{UserInfo.name}</h1>
+            <LazyLoadImage
+              alt='demonstration1'
+              className={style.imagePreview}
+              src={ProfileImage}
+              effect='blur'
+            />
+            <div className={style.email}>{UserInfo.email}</div>
+            <div className={style.edit}>
+              <Tooltip title=' ویرایش'>
+                <IconButton size='small' color='error' onClick={handleOpen}>
+                  <CreateIcon />
+                </IconButton>
+              </Tooltip>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* modal */}
       <Dialog

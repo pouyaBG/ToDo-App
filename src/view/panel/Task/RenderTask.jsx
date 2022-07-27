@@ -10,7 +10,6 @@ import {
   Stack,
   TextField,
   useScrollTrigger,
-  Toolbar,
   Tooltip,
 } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -21,6 +20,7 @@ import { useEffect } from 'react';
 import { GetTask } from '../../../services/getApi';
 import OneTask from '../../../components/pages/Task/OneTask';
 import { PostTaskTodo } from '../../../services/postApi';
+import LoadingPage from '../../../components/common/LoadingPage/LoadingPAge';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -75,11 +75,15 @@ const RenderTask = () => {
       <section className={style.container_task}>
         {/* modal */}
         {/* render task */}
-        {state == null
-          ? 'خالی'
-          : state.map((items) => (
-              <OneTask key={items._id} {...items} setChange={setChange} />
-            ))}
+        {state == null ? (
+          <>
+            <LoadingPage />
+          </>
+        ) : (
+          state.map((items) => (
+            <OneTask key={items._id} {...items} setChange={setChange} />
+          ))
+        )}
         {/* end render task */}
         <Dialog
           open={openModal}
