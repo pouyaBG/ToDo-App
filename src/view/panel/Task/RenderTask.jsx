@@ -10,6 +10,8 @@ import {
   Stack,
   TextField,
   useScrollTrigger,
+  Toolbar,
+  Tooltip,
 } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import PropTypes from 'prop-types';
@@ -134,18 +136,20 @@ const RenderTask = () => {
         </Dialog>
         {/* btn add */}
         <HideOnScroll>
-          <Stack
-            direction='row'
-            spacing={0}
-            position='fixed'
-            className={style.button_addTodo}>
-            <Button
-              variant='contained'
-              className={style.btn}
-              onClick={() => setOpenModal(true)}>
-              <EditOutlinedIcon />
-            </Button>
-          </Stack>
+          <Tooltip title='افزودن تسک'>
+            <Stack
+              direction='row'
+              spacing={0}
+              position='fixed'
+              className={style.button_addTodo}>
+              <Button
+                variant='contained'
+                className={style.btn}
+                onClick={() => setOpenModal(true)}>
+                <EditOutlinedIcon />
+              </Button>
+            </Stack>
+          </Tooltip>
         </HideOnScroll>
       </section>
     </>

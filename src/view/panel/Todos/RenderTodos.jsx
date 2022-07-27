@@ -14,6 +14,7 @@ import {
   FormControlLabel,
   Skeleton,
   Slide,
+  Tooltip,
   useScrollTrigger,
 } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -51,7 +52,7 @@ const MyTodo = () => {
   const [loadAddTodo, setLoadAddTodo] = React.useState(false);
   const [change, setChange] = React.useState(new Date());
   const [isPointTime, setIsPointTime] = React.useState(false);
-  const [trueData, setTrueData] = React.useState([])
+  const [trueData, setTrueData] = React.useState([]);
 
   // modal functions
   const [open, setOpen] = React.useState(false);
@@ -81,24 +82,22 @@ const MyTodo = () => {
 
   const changeSetProgress = () => {
     GetuserTodo(params.id).then((res) => {
-      let newTrue = res.todos.filter(i => i.completed)
-      let newStart = res.todos.filter(i => !i.timeStart)
-      let trueLength = newTrue.length
-      let startLength = newStart.length
-      const total = res.todos.length - startLength
+      let newTrue = res.todos.filter((i) => i.completed);
+      let newStart = res.todos.filter((i) => !i.timeStart);
+      let trueLength = newTrue.length;
+      let startLength = newStart.length;
+      const total = res.todos.length - startLength;
 
-      const progess = (trueLength / total) * 100
+      const progess = (trueLength / total) * 100;
 
       updateTaskTodos(params.id, {
         title: state.task_title,
         isForWorksapce: state.isForWorksapce,
         color: state.color,
-        progess
-
-      }).then(res => { })
+        progess,
+      }).then((res) => {});
     });
-
-  }
+  };
 
   const addTodoHandler = () => {
     const discriptionTodo = document.querySelector('#todo-description');
@@ -262,30 +261,34 @@ const MyTodo = () => {
         </Dialog>
         {/* end of Dialog */}
         <HideOnScroll>
-          <Stack
-            direction='row'
-            spacing={0}
-            position='fixed'
-            className={style.button_addTodo}>
-            <Button
-              variant='contained'
-              className={style.btn}
-              onClick={() => setOpenModal(true)}>
-              <EditOutlinedIcon />
-            </Button>
-          </Stack>
-        </HideOnScroll>
-        <HideOnScroll>
-          <Link to={'/panel/task'}>
+          <Tooltip title='افزودن فعالیت'>
             <Stack
               direction='row'
               spacing={0}
               position='fixed'
-              className={style.button_return}>
-              <Button variant='contained' className={style.btn}>
-                <KeyboardDoubleArrowLeftIcon />
+              className={style.button_addTodo}>
+              <Button
+                variant='contained'
+                className={style.btn}
+                onClick={() => setOpenModal(true)}>
+                <EditOutlinedIcon />
               </Button>
             </Stack>
+          </Tooltip>
+        </HideOnScroll>
+        <HideOnScroll>
+          <Link to={'/panel/task'}>
+            <Tooltip title='برگشت ب تسک ها' placement='top'>
+              <Stack
+                direction='row'
+                spacing={0}
+                position='fixed'
+                className={style.button_return}>
+                <Button variant='contained' className={style.btn}>
+                  <KeyboardDoubleArrowLeftIcon />
+                </Button>
+              </Stack>
+            </Tooltip>
           </Link>
         </HideOnScroll>
       </section>
