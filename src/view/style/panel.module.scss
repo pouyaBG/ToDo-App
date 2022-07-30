@@ -37,6 +37,9 @@
   color: black;
   margin: 10px;
 }
+.avatar_user {
+  border: 2px dotted white;
+}
 @media screen and (min-width: 768px) {
   .userName {
     display: flex;

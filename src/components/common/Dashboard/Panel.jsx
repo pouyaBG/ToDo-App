@@ -203,11 +203,7 @@ export default function Panel(props) {
                   <Tooltip title='تنظیمات'>
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                       <Stack>
-                        <Avatar
-                          alt={userName}
-                          // !TODO: add src here
-                          src={ProfileImage}
-                        />
+                        <Avatar alt={userName} src={ProfileImage} className={style.avatar_user}/>
                       </Stack>
                     </IconButton>
                   </Tooltip>
