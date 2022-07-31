@@ -1,15 +1,9 @@
 .layout {
-  background: #ece9e6; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #ffffff,
-    #ece9e6
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #ffffff,
-    #ece9e6
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(359deg, #d53b3a, #0882a6, #0ad4a0);
+  background-size: 600% 600%;
+  -webkit-animation: AnimationName 12s ease infinite;
+  -moz-animation: AnimationName 12s ease infinite;
+  animation: AnimationName 12s ease infinite;
   height: 100%;
   width: 100%;
   display: flex;
@@ -20,10 +14,11 @@
 .box_auth {
   width: 400px;
   height: 100vh;
-  background: #fff;
+  background: rgb(255, 255, 255);
   border-radius: 12px;
-  box-shadow: 0 10px 20px #0003;
-  border: 2px solid #eee;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 13px 27px -5px,
+    rgba(255, 255, 255, 0.3) 0px 8px 16px -8px;
+  border: 1px solid rgb(255, 255, 255);
 
   > div {
     display: flex;
@@ -52,13 +47,13 @@
     background: #6297db;
     color: #fff;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
 
     &:hover {
-      background: #6297db;
+      background: #3579d3;
       opacity: 0.9;
     }
   }
@@ -66,5 +61,38 @@
 @media screen and (min-width: 401px) {
   .box_auth {
     height: 500px;
+  }
+}
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 44% 0%;
+  }
+  50% {
+    background-position: 57% 100%;
+  }
+  100% {
+    background-position: 44% 0%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 44% 0%;
+  }
+  50% {
+    background-position: 57% 100%;
+  }
+  100% {
+    background-position: 44% 0%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 44% 0%;
+  }
+  50% {
+    background-position: 57% 100%;
+  }
+  100% {
+    background-position: 44% 0%;
   }
 }

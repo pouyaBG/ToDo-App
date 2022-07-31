@@ -111,7 +111,7 @@ export default function Loing() {
           ) : (
             <>
               لطفا صبر کنید &nbsp;
-              <CircularProgress sx={{ color: '#fff' }} size={18} />
+              <CircularProgress sx={{ color: '#fff' }} size={15} />
             </>
           )}
         </Button>
